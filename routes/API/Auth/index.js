@@ -65,11 +65,34 @@ router.post('/login', async (req, res) => {
 
 router.delete('/', async (req, res) => {
     try {
+        if (!req.headers.authorization) {
+            return res.status(401).json({message: "Token d'authentification manquant."});
+        }
+        const token = req.headers.authorization.split(' ')[1];
+        let decodedToken;
+        try {
+            decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+            console.log(decodedToken);
+        } catch (error) {
+            if (error.name === 'JsonWebTokenError') {
+                return res.status(401).json({message: "Token invalide ou malformé."});
+            }
+            throw error;
+        }
+        const adminUser = await prisma.users.findFirst({where: {id: decodedToken.id}});
+        const roleAdminId = await prisma.roles.findFirst({where: {label: "admin"}});
+        console.log("roleAdminId", roleAdminId);
+        if (!adminUser || adminUser.id_role !== roleAdminId.id) {
+            return res.status(403).json({message: "Accès refusé."});
+        }
+
         const {username} = req.body;
         const user = await prisma.users.findFirst({where: {username: username}});
+
         if (!user) {
             return res.status(404).json({message: "Utilisateur non trouvé."});
         }
+
         await prisma.users.delete({where: {id: user.id}});
         return res.status(200).json({message: "Utilisateur supprimé avec succès."});
     } catch (err) {
