@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model features {
+  id                    Int                     @id @default(autoincrement())
+  label                 String                  @db.VarChar(255)
+  users_access_features users_access_features[]
+}
+
+model logs {
+  id          Int      @id @default(autoincrement())
+  id_user     Int?
+  description String   @db.VarChar(255)
+  date_log    DateTime @db.Date
+  id_feature  Int?
+  users       users?   @relation(fields: [id_user], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "logs_ibfk_1")
+
+  @@index([id_user], map: "who")
+}
+
+model roles {
+  id    Int     @id @default(autoincrement())
+  label String  @db.VarChar(25)
+  users users[]
+}
+
+model users {
+  id                    Int                     @id @default(autoincrement())
+  username              String                  @db.VarChar(50)
+  password              String                  @db.Text
+  token                 String?                 @db.Text
+  id_role               Int
+  logs                  logs[]
+  roles                 roles                   @relation(fields: [id_role], references: [id], onUpdate: Restrict, map: "users_ibfk_1")
+  users_access_features users_access_features[]
+
+  @@index([id_role], map: "id_role")
+}
+
+model users_access_features {
+  id_user    Int
+  id_feature Int
+  users      users    @relation(fields: [id_user], references: [id], onUpdate: Restrict, map: "users_access_features_ibfk_1")
+  features   features @relation(fields: [id_feature], references: [id], onUpdate: Restrict, map: "users_access_features_ibfk_2")
+
+  @@id([id_user, id_feature])
+  @@index([id_feature], map: "id_feature")
+}

@@ -14,6 +14,7 @@
   },
   "private": true,
   "dependencies": {
+    "@prisma/client": "^5.20.0",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
@@ -23,7 +24,8 @@
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mariadb": "^3.3.2",
-    "sequelize": "^6.37.4"
+    "sequelize": "^6.37.4",
+    "sequelize-auto": "^0.8.8"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"

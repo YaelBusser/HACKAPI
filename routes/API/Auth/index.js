@@ -1,17 +1,14 @@
 import express from "express";
 import bcrypt from "bcrypt";
-//import Users from "../../../models/users.js";
 import jwt from "jsonwebtoken";
-import config from "../../../config/config.json" assert {type: 'json'};
-import axios from "axios";
+import {prisma} from "../../../app.js";
 
 const router = express.Router();
-
 router.post('/register', async (req, res) => {
     try {
-        const {name, firstname, email, password} = req.body;
+        const {username, password} = req.body;
         // Vérifier si l'utilisateur existe déjà
-        const existingUser = await Users.findOne({where: {email: email}});
+        const existingUser = await prisma.users.findFirst({where: {username: username}});
         if (existingUser) {
             return res.status(400).json({message: "L'utilisateur existe déjà."});
         }
@@ -19,12 +16,14 @@ router.post('/register', async (req, res) => {
         // Hasher le mot de passe
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Créer un nouvel utilisateur
-        const newUser = await Users.create({
-            name: name,
-            firstname: firstname,
-            email: email,
-            password: hashedPassword
+        const clientRole = await prisma.roles.findFirst({where: {label: "client"}});
+        const roleId = clientRole.id;
+        const newUser = await prisma.users.create({
+            data: {
+                username: username,
+                password: hashedPassword,
+                id_role: roleId,
+            }
         });
 
         return res.status(201).json({message: "Inscription réussie.", user: newUser});
@@ -36,9 +35,9 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-        const {email, password} = req.body;
+        const {username, password} = req.body;
 
-        const user = await Users.findOne({where: {email: email}});
+        const user = await prisma.users.findFirst({where: {username: username}});
         if (!user) {
             return res.status(401).json({message: "Identifiants invalides."});
         }
@@ -47,9 +46,15 @@ router.post('/login', async (req, res) => {
         if (!isPasswordValid) {
             return res.status(401).json({message: "Identifiants invalides."});
         }
-        console.log("config.JWT_SECRET", config.JWT_SECRET);
-        const token = jwt.sign({id: user.id, email: user.email}, config.JWT_SECRET, {expiresIn: '365d'});
-
+        const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET, {expiresIn: '365d'});
+        await prisma.users.update({
+            where: {
+                id: user.id,
+            },
+            data: {
+                token: token,
+            },
+        });
         return res.json({message: "Connexion réussie.", token: token});
     } catch (error) {
         console.log(error);
