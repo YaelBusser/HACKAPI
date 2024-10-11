@@ -2,8 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {prisma} from "../../../app.js";
-import res from "express/lib/response.js";
-
+import isAdmin from "../../../middlewares/isAdmin.js";
 const router = express.Router();
 router.post('/register', async (req, res) => {
     try {
@@ -63,7 +62,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/', isAdmin, async (req, res) => {
     try {
         if (!req.headers.authorization) {
             return res.status(401).json({message: "Token d'authentification manquant."});

@@ -17,7 +17,7 @@ model logs {
   id          Int      @id @default(autoincrement())
   id_user     Int?
   description String   @db.VarChar(255)
-  date_log    DateTime @db.Date
+  date_log    DateTime @db.DateTime(0)
   id_feature  Int?
   users       users?   @relation(fields: [id_user], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "logs_ibfk_1")
 
