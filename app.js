@@ -40,7 +40,7 @@ app.use('/', express.Router().get("/", (req, res) => {
         return res.json("Hello world ! API working...");
     }
 ));
-app.use('/auth', AuthRoutes);
+app.use('/user', AuthRoutes);
 
 // Démarrage du serveur
 server.listen(port, () => console.log(`Server running on http://localhost:${port}`));

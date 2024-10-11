@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {prisma} from "../../../app.js";
+import res from "express/lib/response.js";
 
 const router = express.Router();
 router.post('/register', async (req, res) => {
@@ -62,5 +63,19 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.delete('/', async (req, res) => {
+    try {
+        const {username} = req.body;
+        const user = await prisma.users.findFirst({where: {username: username}});
+        if (!user) {
+            return res.status(404).json({message: "Utilisateur non trouvé."});
+        }
+        await prisma.users.delete({where: {id: user.id}});
+        return res.status(200).json({message: "Utilisateur supprimé avec succès."});
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({message: "Erreur lors de la suppression de l'utilisateur."});
+    }
+});
 
 export default router;
