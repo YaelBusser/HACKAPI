@@ -4,38 +4,33 @@ This repository contains a project developed as part of a practical assignment f
 
 ## Features
 
-- <span style="color: red;">Email existence verification tool.</span>
-- <span style="color: red;">Email spammer (content + number of sends).</span>
-- <span style="color: red;">Phishing service (create a custom phishing webpage - backed by AI!).</span>
-- <span style="color: red;">Check if the password is on the list of most common passwords (https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt).</span>
-- <span style="color: red;">Retrieve all domains & subdomains associated with a Domain Name (Adrien, this is also called "NDD" in the field 😁).</span>
-- <span style="color: red;">DDoS.</span>
-- <span style="color: red;">Random image change (find an API that does this ^^).</span>
-- <span style="color: red;">Generate fake identity => use the Faker library!</span>
-   - <span style="color: red;">faker JS: https://fakerjs.dev/</span>
-   - <span style="color: red;">faker PHP: https://fakerphp.org/</span>
-   - <span style="color: red;">faker Python: https://faker.readthedocs.io/en/master/</span>
-   - <span style="color: red;">faker .NET: https://www.nuget.org/packages/Faker.Net/</span>
-   - <span style="color: red;">faker JAVA: https://javadoc.io/doc/com.github.javafaker/javafaker/latest/com/github/javafaker/Faker.html</span>
-   - <span style="color: red;">faker Ruby: https://github.com/faker-ruby/faker</span>
-- <span style="color: red;">Information crawler about a person (from a first/last name).</span>
-- <span style="color: red;">Secure password generator.</span>
+- <code style="color: red;">Email existence verification tool.</code>
+- <code style="color: red;">Email spammer (content + number of sends).</code>
+- <code style="color: red;">Phishing service (create a custom phishing webpage - backed by AI!).</code>
+- <code style="color: red;">Check if the password is on the list of most common passwords (https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt).</code>
+- <code style="color: red;">Retrieve all domains & subdomains associated with a Domain Name.</code>
+- <code style="color: red;">DDoS.</code>
+- <code style="color: red;">Random image change (find an API that does this ^^).</code>
+- <code style="color: red;">Generate fake identity => use the Faker library!</code>
+   - <code style="color: red;">faker JS: https://fakerjs.dev/</code>
+- <code style="color: red;">Information crawler about a person (from a first/last name).</code>
+- <code style="color: red;">Secure password generator.</code>
 
 
 ## Obligations
 
-- <span style="color: green;">Control access to your API with a login system based on JWT.</span>
-- <span style="color: red;">Set up a permissions system, manageable by administrators, which defines which features can be accessed by each user.</span>
-- <span style="color: red;">Implement an internal logging system, accessible only to admins, to track:</span>
-   - <span style="color: red;">the latest actions performed,</span>
-   - <span style="color: red;">recent actions of a specific user,</span>
-   - <span style="color: red;">recent actions related to a specific feature.</span>
-- <span style="color: green;">Strict adherence to RESTful conventions.</span>
-- <span style="color: red;">Integrate a `Swagger.json` file for documentation purposes, usable on "https://swagger.io/tools/swagger-ui/".</span>
-- <span style="color: green;">Follow the Richardson Maturity Model.</span>
-- <span style="color: green;">Test your API in POSTMAN, including:</span>
-   - <span style="color: green;">Organizing your routes in collections and within a project</span>
-   - <span style="color: green;">Automating the generation of the bearer token and its transmission in all requests (Bearer = JWT).</span>
+- <code style="color: green;">Control access to your API with a login system based on JWT.</code>
+- <code style="color: red;">Set up a permissions system, manageable by administrators, which defines which features can be accessed by each user.</code>
+- <code style="color: red;">Implement an internal logging system, accessible only to admins, to track:</code>
+   - <code style="color: red;">the latest actions performed,</code>
+   - <code style="color: red;">recent actions of a specific user,</code>
+   - <code style="color: red;">recent actions related to a specific feature.</code>
+- <code style="color: green;">Strict adherence to RESTful conventions.</code>
+- <code style="color: red;">Integrate a `Swagger.json` file for documentation purposes, usable on "https://swagger.io/tools/swagger-ui/".</code>
+- <code style="color: green;">Follow the Richardson Maturity Model.</code>
+- <code style="color: green;">Test your API in POSTMAN, including:</code>
+   - <code style="color: green;">Organizing your routes in collections and within a project</code>
+   - <code style="color: green;">Automating the generation of the bearer token and its transmission in all requests (Bearer = JWT).</code>
 
 
 ## Conceptual Data Model
