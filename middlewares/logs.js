@@ -1,36 +1,39 @@
 import express from "express";
-import {PrismaClient} from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
 const router = express.Router();
 
 router.use(async (req, res, next) => {
-    try {
+    res.on('finish', async () => {
         let userId = null;
-        if(req.headers.authorization){
+
+        if (req.headers.authorization) {
             const token = req.headers.authorization.split(' ')[1];
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            userId = decoded.id;
+            try {
+                const decoded = jwt.verify(token, process.env.JWT_SECRET);
+                userId = decoded.id;
+            } catch (error) {
+                console.error("JWT verification failed:", error);
+            }
         }
 
-
-        await prisma.logs.create({
-            data: {
-                id_user: userId || null,
-                description: req.method + ' ' + req.originalUrl,
-                date_log: new Date(),
-                id_feature: req.body.feature ? req.body.feature : null,
-            },
-        });
-    } catch (error) {
-        console.error("Failed to log action:", error);
-    }
+        try {
+            await prisma.logs.create({
+                data: {
+                    id_user: userId || null,
+                    description: req.method + ' ' + req.originalUrl,
+                    date_log: new Date(),
+                    id_feature: req.body.feature ? req.body.feature : null,
+                    status_code: res.statusCode
+                },
+            });
+        } catch (error) {
+            console.error("Failed to log action:", error);
+        }
+    });
     next();
-});
-
-router.post('/', async (req, res) => {
-    res.send('Action logged');
 });
 
 export default router;

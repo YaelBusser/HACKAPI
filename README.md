@@ -47,10 +47,19 @@ Below is Version 1 of the conceptual data model, which incorporates all required
    - `PORT=4000`
    - `JWT_SECRET=hackapiJWT`
 
+3. To launch the API, simply run the following command:
+   ```bash
+   npm run dev
+
+4. To view the logs, you can execute this request (requirement: logged in as an admin): http://localhost:4000/logs
+
 ## Usage Instructions
 
-To interact with the API functionalities, you can use Postman, for instance, to set up the Bearer token.
+You can easily access the hosted application at the following URL:
 
 OR
 
-You can simply use the hosted application at this url:
+To interact with the API functionalities, you can use Postman, for instance, to set up the Bearer token.
+
+Next, open Postman and import the collection (`HACKAPI.postman_collection.json`) located in the Postman folder.
+

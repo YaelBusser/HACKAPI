@@ -38,11 +38,12 @@ import logsMiddleware from "./middlewares/logs.js";
 import verifyToken from "./middlewares/verifyToken.js";
 import isAdmin from "./middlewares/isAdmin.js";
 
-app.use(logsMiddleware);
 
 // Routes API
 import UsersRoutes from "./routes/API/Users/index.js";
 import LogsRoutes from "./routes/API/logs/index.js";
+
+app.use(logsMiddleware);
 
 app.use('/', express.Router().get("/", (req, res) => {
         return res.json("Hello world ! API working...");
@@ -53,4 +54,3 @@ app.use('/logs', [verifyToken, isAdmin], LogsRoutes);
 
 // Démarrage du serveur
 server.listen(port, () => console.log(`Server running on http://localhost:${port}`));
-

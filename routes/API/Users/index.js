@@ -12,7 +12,7 @@ router.post('/register', async (req, res) => {
         // Vérifier si l'utilisateur existe déjà
         const existingUser = await prisma.users.findFirst({where: {username: username}});
         if (existingUser) {
-            return res.status(400).json({message: "L'utilisateur existe déjà."});
+            return res.status(500).json({message: "L'utilisateur existe déjà."});
         }
 
         // Hasher le mot de passe
@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login',async (req, res) => {
     try {
         const {username, password} = req.body;
         if (!username || !password) {
@@ -98,5 +98,33 @@ router.delete('/', verifyToken, isAdmin, async (req, res) => {
         return res.status(500).json({message: "Erreur lors de la suppression de l'utilisateur."});
     }
 });
+
+router.post('/logout', verifyToken, async (req, res) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        let decodedToken;
+        try {
+            decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        } catch (error) {
+            return res.status(401).json({message: "Token invalide ou malformé."});
+        }
+
+        const user = await prisma.users.findFirst({where: {id: decodedToken.id}});
+        if (!user) {
+            return res.status(404).json({message: "Utilisateur non trouvé."});
+        }
+
+        await prisma.users.update({
+            where: {id: user.id},
+            data: {token: null},
+        });
+
+        return res.status(200).json({message: "Déconnexion réussie."});
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({message: "Erreur lors de la déconnexion de l'utilisateur."});
+    }
+});
+
 
 export default router;
