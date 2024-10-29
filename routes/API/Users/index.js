@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {prisma} from "../../../app.js";
 import isAdmin from "../../../middlewares/isAdmin.js";
+import verifyToken from "../../../middlewares/verifyToken.js";
+
 const router = express.Router();
 router.post('/register', async (req, res) => {
     try {
@@ -36,9 +38,11 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const {username, password} = req.body;
-
+        if (!username || !password) {
+            return res.status(400).json({message: "Le nom d'utilisateur et le mot de passe sont requis."});
+        }
         const user = await prisma.users.findFirst({where: {username: username}});
-        if (!user) {
+        if (!user || !user.password || typeof password !== "string" || password === "") {
             return res.status(401).json({message: "Identifiants invalides."});
         }
 
@@ -46,15 +50,13 @@ router.post('/login', async (req, res) => {
         if (!isPasswordValid) {
             return res.status(401).json({message: "Identifiants invalides."});
         }
+
         const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET, {expiresIn: '365d'});
         await prisma.users.update({
-            where: {
-                id: user.id,
-            },
-            data: {
-                token: token,
-            },
+            where: {id: user.id},
+            data: {token: token},
         });
+
         return res.json({message: "Connexion réussie.", token: token});
     } catch (error) {
         console.log(error);
@@ -62,16 +64,12 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.delete('/', isAdmin, async (req, res) => {
+router.delete('/', verifyToken, isAdmin, async (req, res) => {
     try {
-        if (!req.headers.authorization) {
-            return res.status(401).json({message: "Token d'authentification manquant."});
-        }
         const token = req.headers.authorization.split(' ')[1];
         let decodedToken;
         try {
             decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-            console.log(decodedToken);
         } catch (error) {
             if (error.name === 'JsonWebTokenError') {
                 return res.status(401).json({message: "Token invalide ou malformé."});
@@ -80,16 +78,17 @@ router.delete('/', isAdmin, async (req, res) => {
         }
         const adminUser = await prisma.users.findFirst({where: {id: decodedToken.id}});
         const roleAdminId = await prisma.roles.findFirst({where: {label: "admin"}});
-        console.log("roleAdminId", roleAdminId);
         if (!adminUser || adminUser.id_role !== roleAdminId.id) {
             return res.status(403).json({message: "Accès refusé."});
         }
 
         const {username} = req.body;
         const user = await prisma.users.findFirst({where: {username: username}});
-
         if (!user) {
             return res.status(404).json({message: "Utilisateur non trouvé."});
+        }
+        if (user.username === "admin") {
+            return res.status(403).json({message: "Impossible de supprimer l'administrateur !"});
         }
 
         await prisma.users.delete({where: {id: user.id}});

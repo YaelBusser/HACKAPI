@@ -7,9 +7,13 @@ const router = express.Router();
 
 router.use(async (req, res, next) => {
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const userId = decoded.id;
+        let userId = null;
+        if(req.headers.authorization){
+            const token = req.headers.authorization.split(' ')[1];
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            userId = decoded.id;
+        }
+
 
         await prisma.logs.create({
             data: {

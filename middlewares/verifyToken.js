@@ -12,11 +12,10 @@ export default async function (req, res, next) {
     }
 
     try {
-        const decoded = jwt.verify(token, SECRET_KEY);
-        const user = await prisma.users.findUnique({
+        const decoded = jwt.verify(token.split(' ')[1], SECRET_KEY);
+        const user = await prisma.users.findFirst({
             where: {id: decoded.id}, include: {roles: true}
         });
-
         if (!user) {
             return res.status(401).send({message: 'Unauthorized!'});
         }
