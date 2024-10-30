@@ -34,7 +34,7 @@ router.post('/register', async (req, res) => {
     try {
         const { username, password } = req.body;
         const existingUser = await prisma.users.findFirst({ where: { username } });
-        if (existingUser) return res.status(500).json({ message: "L'utilisateur existe déjà." });
+        if (existingUser) return res.status(403).json({ message: "L'utilisateur existe déjà." });
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const clientRole = await prisma.roles.findFirst({ where: { label: "client" } });
