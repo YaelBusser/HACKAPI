@@ -1,38 +1,39 @@
 import express from "express";
-import jwt from "jsonwebtoken";
-import {PrismaClient} from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const {username, featureId} = req.query;
+    const { username, id_feature } = req.query;
     let query = {};
+
     try {
-        if (username !== undefined || null) {
+        if (username) {
             const user = await prisma.users.findFirst({
-                where: {username: username}
+                where: { username: username }
             });
-            if (user) {
-                console.log("user", user);
-                query.id_user = user.id;
 
-                if (featureId) {
-                    query.id_feature = parseInt(featureId);
-                }
-
-                const logs = await prisma.logs.findMany({
-                    where: query, orderBy: {
-                        date_log: 'desc'
-                    }
-                });
-                return res.json(logs);
-            } else {
-                return res.status(404).json({message: "User not found."});
+            if (!user) {
+                return res.status(404).json({ message: "User not found!" });
             }
+            query.id_user = user.id;
         }
+
+        if (id_feature) {
+            query.id_feature = parseInt(id_feature);
+        }
+
+        const logs = await prisma.logs.findMany({
+            where: Object.keys(query).length > 0 ? query : undefined,
+            orderBy: { date_log: 'desc' }
+        });
+
+        return res.status(200).json(logs);
+
     } catch (error) {
-        res.status(500).json({error: error});
+        return res.status(500).json({ error: error.message });
     }
 });
+
 export default router;
