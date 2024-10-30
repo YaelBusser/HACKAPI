@@ -8,22 +8,22 @@ const router = express.Router();
  * @swagger
  * /logs:
  *   get:
- *     summary: Récupère les logs
- *     description: Récupère une liste de logs filtrés par nom d'utilisateur ou ID de fonctionnalité, ou les deux. Si aucun filtre n'est fourni, retourne les logs les plus récents.
+ *     summary: Retrieve logs
+ *     description: Fetches a list of logs filtered by username or feature ID, or both. If no filter is provided, returns the most recent logs.
  *     parameters:
  *       - in: query
  *         name: username
  *         schema:
  *           type: string
- *         description: Nom d'utilisateur pour filtrer les logs
+ *         description: Username to filter logs
  *       - in: query
  *         name: id_feature
  *         schema:
  *           type: integer
- *         description: ID de la fonctionnalité pour filtrer les logs
+ *         description: Feature ID to filter logs
  *     responses:
  *       200:
- *         description: Liste des logs
+ *         description: List of logs retrieved successfully
  *         content:
  *           application/json:
  *             schema:
@@ -42,10 +42,12 @@ const router = express.Router();
  *                   date_log:
  *                     type: string
  *                     format: date-time
+ *       400:
+ *         description: Invalid query parameter
  *       404:
- *         description: Utilisateur non trouvé
+ *         description: User not found
  *       500:
- *         description: Erreur interne du serveur
+ *         description: Internal server error
  */
 router.get('/', async (req, res) => {
     const { username, id_feature } = req.query;
@@ -64,7 +66,11 @@ router.get('/', async (req, res) => {
         }
 
         if (id_feature) {
-            query.id_feature = parseInt(id_feature);
+            const idFeatureInt = parseInt(id_feature);
+            if (isNaN(idFeatureInt)) {
+                return res.status(400).json({ message: "Invalid feature ID format." });
+            }
+            query.id_feature = idFeatureInt;
         }
 
         const logs = await prisma.logs.findMany({
@@ -75,7 +81,8 @@ router.get('/', async (req, res) => {
         return res.status(200).json(logs);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" });
     }
 });
 

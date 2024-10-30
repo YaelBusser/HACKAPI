@@ -15,7 +15,7 @@ course.
 - <code style="color: red;">DDoS.</code>
 - <code style="color: red;">Random image change (find an API that does this ^^).</code>
 - <code style="color: red;">Generate fake identity => use the Faker library!</code>
-    - <code style="color: red;">faker JS: https://fakerjs.dev/</code>
+    - <code style="color: red;">faker JS: https://fakerjs.dev/ </code>
 - <code style="color: red;">Information crawler about a person (from a first/last name).</code>
 - <code style="color: red;">Secure password generator.</code>
 
@@ -30,7 +30,7 @@ course.
     - <code style="color: green;">recent actions related to a specific feature.</code>
 - <code style="color: green;">Strict adherence to RESTful conventions.</code>
 - <code style="color: green;">Integrate a `Swagger.json` file for documentation purposes, usable
-  on "https://swagger.io/tools/swagger-ui/".</code>
+  on "https://swagger.io/tools/swagger-ui/". </code>
 - <code style="color: green;">Follow the Richardson Maturity Model.</code>
 - <code style="color: green;">Test your API in POSTMAN, including:</code>
     - <code style="color: green;">Organizing your routes in collections and within a project</code>

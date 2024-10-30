@@ -11,8 +11,8 @@ const router = express.Router();
  * @swagger
  * /user/register:
  *   post:
- *     summary: Inscription d'un utilisateur
- *     description: Crée un nouvel utilisateur avec le rôle de client.
+ *     summary: User registration
+ *     description: Creates a new user with the client role.
  *     requestBody:
  *       required: true
  *       content:
@@ -26,15 +26,17 @@ const router = express.Router();
  *                 type: string
  *     responses:
  *       201:
- *         description: Inscription réussie
+ *         description: Registration successful
+ *       403:
+ *         description: User already exists
  *       500:
- *         description: Erreur lors de l'inscription
+ *         description: Server error during registration
  */
 router.post('/register', async (req, res) => {
     try {
         const { username, password } = req.body;
         const existingUser = await prisma.users.findFirst({ where: { username } });
-        if (existingUser) return res.status(403).json({ message: "L'utilisateur existe déjà." });
+        if (existingUser) return res.status(403).json({ message: "User already exists." });
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const clientRole = await prisma.roles.findFirst({ where: { label: "client" } });
@@ -42,10 +44,10 @@ router.post('/register', async (req, res) => {
             data: { username, password: hashedPassword, id_role: clientRole.id },
         });
 
-        return res.status(201).json({ message: "Inscription réussie.", user: newUser });
+        return res.status(201).json({ message: "Registration successful.", user: newUser });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "Erreur lors de l'inscription de l'utilisateur." });
+        return res.status(500).json({ message: "Server error during user registration." });
     }
 });
 
@@ -53,8 +55,8 @@ router.post('/register', async (req, res) => {
  * @swagger
  * /user/login:
  *   post:
- *     summary: Connexion de l'utilisateur
- *     description: Authentifie un utilisateur et retourne un token JWT.
+ *     summary: User login
+ *     description: Authenticates a user and returns a JWT token.
  *     requestBody:
  *       required: true
  *       content:
@@ -68,30 +70,32 @@ router.post('/register', async (req, res) => {
  *                 type: string
  *     responses:
  *       200:
- *         description: Connexion réussie
+ *         description: Login successful
+ *       400:
+ *         description: Missing username or password
  *       401:
- *         description: Identifiants invalides
+ *         description: Invalid credentials
  *       500:
- *         description: Erreur lors de la connexion
+ *         description: Server error during login
  */
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
-        if (!username || !password) return res.status(400).json({ message: "Le nom d'utilisateur et le mot de passe sont requis." });
+        if (!username || !password) return res.status(400).json({ message: "Username and password are required." });
 
         const user = await prisma.users.findFirst({ where: { username } });
-        if (!user) return res.status(401).json({ message: "Identifiants invalides." });
+        if (!user) return res.status(401).json({ message: "Invalid credentials." });
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
-        if (!isPasswordValid) return res.status(401).json({ message: "Identifiants invalides." });
+        if (!isPasswordValid) return res.status(401).json({ message: "Invalid credentials." });
 
         const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '365d' });
         await prisma.users.update({ where: { id: user.id }, data: { token } });
 
-        return res.json({ message: "Connexion réussie.", token });
+        return res.status(200).json({ message: "Login successful.", token });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "Erreur lors de la connexion de l'utilisateur." });
+        return res.status(500).json({ message: "Server error during login." });
     }
 });
 
@@ -99,8 +103,8 @@ router.post('/login', async (req, res) => {
  * @swagger
  * /user:
  *   delete:
- *     summary: Supprime un utilisateur
- *     description: Supprime un utilisateur spécifié par le nom d'utilisateur.
+ *     summary: Delete a user
+ *     description: Deletes a user specified by username.
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -114,27 +118,27 @@ router.post('/login', async (req, res) => {
  *                 type: string
  *     responses:
  *       200:
- *         description: Utilisateur supprimé avec succès
+ *         description: User successfully deleted
  *       403:
- *         description: Accès refusé
+ *         description: Access denied or forbidden action
  *       404:
- *         description: Utilisateur non trouvé
+ *         description: User not found
  *       500:
- *         description: Erreur lors de la suppression
+ *         description: Server error during deletion
  */
 router.delete('/', verifyToken, isAdmin, async (req, res) => {
     try {
         const { username } = req.body;
         const user = await prisma.users.findFirst({ where: { username } });
-        if (!user) return res.status(404).json({ message: "Utilisateur non trouvé." });
+        if (!user) return res.status(404).json({ message: "User not found." });
 
-        if (user.username === "admin") return res.status(403).json({ message: "Impossible de supprimer l'administrateur !" });
+        if (user.username === "admin") return res.status(403).json({ message: "Cannot delete the admin user!" });
 
         await prisma.users.delete({ where: { id: user.id } });
-        return res.status(200).json({ message: "Utilisateur supprimé avec succès." });
+        return res.status(200).json({ message: "User successfully deleted." });
     } catch (err) {
         console.log(err);
-        return res.status(500).json({ message: "Erreur lors de la suppression de l'utilisateur." });
+        return res.status(500).json({ message: "Server error during user deletion." });
     }
 });
 
@@ -142,30 +146,32 @@ router.delete('/', verifyToken, isAdmin, async (req, res) => {
  * @swagger
  * /user/logout:
  *   post:
- *     summary: Déconnexion de l'utilisateur
- *     description: Invalide le token de l'utilisateur connecté.
+ *     summary: User logout
+ *     description: Invalidates the logged-in user's token.
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Déconnexion réussie
+ *         description: Logout successful
  *       401:
- *         description: Token invalide
+ *         description: Invalid token
+ *       404:
+ *         description: User not found
  *       500:
- *         description: Erreur lors de la déconnexion
+ *         description: Server error during logout
  */
 router.post('/logout', verifyToken, async (req, res) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         const user = await prisma.users.findFirst({ where: { id: decodedToken.id } });
-        if (!user) return res.status(404).json({ message: "Utilisateur non trouvé." });
+        if (!user) return res.status(404).json({ message: "User not found." });
 
         await prisma.users.update({ where: { id: user.id }, data: { token: null } });
-        return res.status(200).json({ message: "Déconnexion réussie." });
+        return res.status(200).json({ message: "Logout successful." });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "Erreur lors de la déconnexion de l'utilisateur." });
+        return res.status(500).json({ message: "Server error during logout." });
     }
 });
 
