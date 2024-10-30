@@ -4,6 +4,7 @@ import {PrismaClient} from "@prisma/client";
 import bodyParser from "body-parser";
 import {config as configDotenv} from 'dotenv';
 import cors from "cors";
+import {swaggerDocs, swaggerUi} from "./swagger/swagger.js";
 
 configDotenv();
 
@@ -38,7 +39,6 @@ import logsMiddleware from "./middlewares/logs.js";
 import verifyToken from "./middlewares/verifyToken.js";
 import isAdmin from "./middlewares/isAdmin.js";
 
-
 // Routes API
 import UsersRoutes from "./routes/API/Users/index.js";
 import LogsRoutes from "./routes/API/logs/index.js";
@@ -51,6 +51,12 @@ app.use('/', express.Router().get("/", (req, res) => {
 ));
 app.use('/user', UsersRoutes);
 app.use('/logs', [verifyToken, isAdmin], LogsRoutes);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.get("/swagger.json", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.send(swaggerDocs);
+});
 
 // Démarrage du serveur
 server.listen(port, () => console.log(`Server running on http://localhost:${port}`));

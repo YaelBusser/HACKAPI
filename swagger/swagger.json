@@ -1,0 +1,212 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "version": "1.0.0",
+    "description": "Documentation de l'API hackapi"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000",
+      "description": "Serveur local"
+    }
+  ],
+  "paths": {
+    "/logs": {
+      "get": {
+        "summary": "Récupère les logs",
+        "description": "Récupère une liste de logs filtrés par nom d'utilisateur ou ID de fonctionnalité, ou les deux. Si aucun filtre n'est fourni, retourne les logs les plus récents.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "username",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Nom d'utilisateur pour filtrer les logs"
+          },
+          {
+            "in": "query",
+            "name": "id_feature",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID de la fonctionnalité pour filtrer les logs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des logs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "id_user": {
+                        "type": "integer"
+                      },
+                      "id_feature": {
+                        "type": "integer"
+                      },
+                      "action": {
+                        "type": "string"
+                      },
+                      "date_log": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Utilisateur non trouvé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/user/register": {
+      "post": {
+        "summary": "Inscription d'un utilisateur",
+        "description": "Crée un nouvel utilisateur avec le rôle de client.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Inscription réussie"
+          },
+          "500": {
+            "description": "Erreur lors de l'inscription"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "summary": "Connexion de l'utilisateur",
+        "description": "Authentifie un utilisateur et retourne un token JWT.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Connexion réussie"
+          },
+          "401": {
+            "description": "Identifiants invalides"
+          },
+          "500": {
+            "description": "Erreur lors de la connexion"
+          }
+        }
+      }
+    },
+    "/user": {
+      "delete": {
+        "summary": "Supprime un utilisateur",
+        "description": "Supprime un utilisateur spécifié par le nom d'utilisateur.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Utilisateur supprimé avec succès"
+          },
+          "403": {
+            "description": "Accès refusé"
+          },
+          "404": {
+            "description": "Utilisateur non trouvé"
+          },
+          "500": {
+            "description": "Erreur lors de la suppression"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "summary": "Déconnexion de l'utilisateur",
+        "description": "Invalide le token de l'utilisateur connecté.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Déconnexion réussie"
+          },
+          "401": {
+            "description": "Token invalide"
+          },
+          "500": {
+            "description": "Erreur lors de la déconnexion"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+
+  },
+  "tags": []
+}

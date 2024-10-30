@@ -21,10 +21,10 @@ This repository contains a project developed as part of a practical assignment f
 
 - <code style="color: green;">Control access to your API with a login system based on JWT.</code>
 - <code style="color: red;">Set up a permissions system, manageable by administrators, which defines which features can be accessed by each user.</code>
-- <code style="color: red;">Implement an internal logging system, accessible only to admins, to track:</code>
-   - <code style="color: red;">the latest actions performed,</code>
-   - <code style="color: red;">recent actions of a specific user,</code>
-   - <code style="color: red;">recent actions related to a specific feature.</code>
+- <code style="color: green;">Implement an internal logging system, accessible only to admins, to track:</code>
+   - <code style="color: green;">the latest actions performed,</code>
+   - <code style="color: green;">recent actions of a specific user,</code>
+   - <code style="color: green;">recent actions related to a specific feature.</code>
 - <code style="color: green;">Strict adherence to RESTful conventions.</code>
 - <code style="color: red;">Integrate a `Swagger.json` file for documentation purposes, usable on "https://swagger.io/tools/swagger-ui/".</code>
 - <code style="color: green;">Follow the Richardson Maturity Model.</code>

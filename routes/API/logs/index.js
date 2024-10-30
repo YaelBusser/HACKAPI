@@ -4,6 +4,49 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const router = express.Router();
 
+/**
+ * @swagger
+ * /logs:
+ *   get:
+ *     summary: Récupère les logs
+ *     description: Récupère une liste de logs filtrés par nom d'utilisateur ou ID de fonctionnalité, ou les deux. Si aucun filtre n'est fourni, retourne les logs les plus récents.
+ *     parameters:
+ *       - in: query
+ *         name: username
+ *         schema:
+ *           type: string
+ *         description: Nom d'utilisateur pour filtrer les logs
+ *       - in: query
+ *         name: id_feature
+ *         schema:
+ *           type: integer
+ *         description: ID de la fonctionnalité pour filtrer les logs
+ *     responses:
+ *       200:
+ *         description: Liste des logs
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   id_user:
+ *                     type: integer
+ *                   id_feature:
+ *                     type: integer
+ *                   action:
+ *                     type: string
+ *                   date_log:
+ *                     type: string
+ *                     format: date-time
+ *       404:
+ *         description: Utilisateur non trouvé
+ *       500:
+ *         description: Erreur interne du serveur
+ */
 router.get('/', async (req, res) => {
     const { username, id_feature } = req.query;
     let query = {};
