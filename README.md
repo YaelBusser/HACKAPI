@@ -6,7 +6,7 @@ course.
 
 ## Features
 
-- <code style="color: red;">Email existence verification tool.</code>
+- <code style="color: green;">Email existence verification tool.</code>
 - <code style="color: red;">Email spammer (content + number of sends).</code>
 - <code style="color: red;">Phishing service (create a custom phishing webpage - backed by AI!).</code>
 - <code style="color: red;">Check if the password is on the list of most common
@@ -51,6 +51,7 @@ the database.
     - `DATABASE_URL=mysql://root:@localhost:3306/hackapi?schema=public`
     - `PORT=4000`
     - `JWT_SECRET=hackapiJWT`
+    - `API_KEY_HUNTER_IO="youApiKey"` => créer votre compte sur https://hunter.io et mettez votre clé d'api.
 
 3. To launch the API, simply run the following command:
    ```bash

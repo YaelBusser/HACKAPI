@@ -10,6 +10,7 @@ datasource db {
 model features {
   id                    Int                     @id @default(autoincrement())
   label                 String                  @db.VarChar(255)
+  tag_route             String                  @db.VarChar(50)
   logs                  logs[]
   users_access_features users_access_features[]
 }
