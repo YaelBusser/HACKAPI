@@ -22,7 +22,7 @@ course.
 ## Obligations
 
 - <code style="color: green;">Control access to your API with a login system based on JWT.</code>
-- <code style="color: red;">Set up a permissions system, manageable by administrators, which defines which features can
+- <code style="color: green;">Set up a permissions system, manageable by administrators, which defines which features can
   be accessed by each user.</code>
 - <code style="color: green;">Implement an internal logging system, accessible only to admins, to track:</code>
     - <code style="color: green;">the latest actions performed,</code>

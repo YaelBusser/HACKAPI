@@ -12,6 +12,7 @@ const router = express.Router();
  * /user/register:
  *   post:
  *     summary: User registration
+ *     tags: [User]
  *     description: Creates a new user with the client role.
  *     requestBody:
  *       required: true
@@ -56,6 +57,7 @@ router.post('/register', async (req, res) => {
  * /user/login:
  *   post:
  *     summary: User login
+ *     tags: [User]
  *     description: Authenticates a user and returns a JWT token.
  *     requestBody:
  *       required: true
@@ -104,6 +106,7 @@ router.post('/login', async (req, res) => {
  * /user:
  *   delete:
  *     summary: Delete a user
+ *     tags: [User]
  *     description: Deletes a user specified by username.
  *     security:
  *       - bearerAuth: []
@@ -147,6 +150,7 @@ router.delete('/', verifyToken, isAdmin, async (req, res) => {
  * /user/logout:
  *   post:
  *     summary: User logout
+ *     tags: [User]
  *     description: Invalidates the logged-in user's token.
  *     security:
  *       - bearerAuth: []
