@@ -6,25 +6,25 @@ const router = express.Router();
 
 /**
  * @swagger
- * /logs:
+ * /Logs:
  *   get:
- *     summary: Retrieve logs
+ *     summary: Retrieve Logs
  *     tags: [Logs]
- *     description: Fetches a list of logs filtered by username or feature ID, or both. If no filter is provided, returns the most recent logs.
+ *     description: Fetches a list of Logs filtered by username or feature ID, or both. If no filter is provided, returns the most recent Logs.
  *     parameters:
  *       - in: query
  *         name: username
  *         schema:
  *           type: string
- *         description: Username to filter logs
+ *         description: Username to filter Logs
  *       - in: query
  *         name: id_feature
  *         schema:
  *           type: integer
- *         description: Feature ID to filter logs
+ *         description: Feature ID to filter Logs
  *     responses:
  *       200:
- *         description: List of logs retrieved successfully
+ *         description: List of Logs retrieved successfully
  *         content:
  *           application/json:
  *             schema:

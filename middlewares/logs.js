@@ -9,6 +9,7 @@ router.use(async (req, res, next) => {
     res.on('finish', async () => {
         let userId = null;
 
+        // Vérification du token JWT pour obtenir l'ID de l'utilisateur
         if (req.headers.authorization) {
             const token = req.headers.authorization.split(' ')[1];
             try {
@@ -20,13 +21,15 @@ router.use(async (req, res, next) => {
         }
 
         try {
+            const featureId = req.body.id_feature ? parseInt(req.body.id_feature, 10) : null;
+
             await prisma.logs.create({
                 data: {
                     id_user: userId || null,
                     description: req.method + ' ' + req.originalUrl,
                     date_log: new Date(),
-                    id_feature: req.body.feature ? req.body.feature : null,
-                    status_code: res.statusCode
+                    id_feature: !isNaN(featureId) ? featureId : null,
+                    status_code: res.statusCode,
                 },
             });
         } catch (error) {
