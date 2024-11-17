@@ -3,6 +3,60 @@ import nodemailer from "nodemailer";
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /email-spammer:
+ *   get:
+ *     summary: Send multiple emails to a recipient
+ *     tags: [Features]
+ *     parameters:
+ *       - in: query
+ *         name: email
+ *         required: true
+ *         description: The recipient's email address
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: count
+ *         required: true
+ *         description: Number of emails to send
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *     responses:
+ *       200:
+ *         description: Emails sent successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Confirmation message with the number of emails sent
+ *       400:
+ *         description: Invalid input (missing or invalid email/count)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Error message explaining the issue
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Error message if something went wrong
+ */
+
+
 router.get('/', async (req, res) => {
     const { email, count } = req.query;
 

@@ -12,10 +12,116 @@
     }
   ],
   "paths": {
-    "/logs": {
+    "/access-features/grant": {
+      "post": {
+        "summary": "Grant permission to a user for a feature",
+        "tags": [
+          "Access Features"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_feature": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "username": {
+                    "type": "string",
+                    "example": "user123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Permission granted successfully."
+          },
+          "400": {
+            "description": "Bad request - missing parameters or invalid feature ID."
+          },
+          "404": {
+            "description": "User or feature not found."
+          },
+          "409": {
+            "description": "Permission already granted."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/access-features/revoke": {
+      "delete": {
+        "summary": "Revoke permission from a user for a feature",
+        "tags": [
+          "Access Features"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_feature": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "username": {
+                    "type": "string",
+                    "example": "user123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Permission revoked successfully."
+          },
+          "400": {
+            "description": "Bad request - missing parameters or invalid feature ID."
+          },
+          "404": {
+            "description": "User or access not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/access-features": {
       "get": {
-        "summary": "Récupère les logs",
-        "description": "Récupère une liste de logs filtrés par nom d'utilisateur ou ID de fonctionnalité, ou les deux. Si aucun filtre n'est fourni, retourne les logs les plus récents.",
+        "summary": "Get all features and their associated users",
+        "tags": [
+          "Access Features"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of features with their users."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/Logs": {
+      "get": {
+        "summary": "Retrieve Logs",
+        "tags": [
+          "Logs"
+        ],
+        "description": "Fetches a list of Logs filtered by username or feature ID, or both. If no filter is provided, returns the most recent Logs.",
         "parameters": [
           {
             "in": "query",
@@ -23,7 +129,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Nom d'utilisateur pour filtrer les logs"
+            "description": "Username to filter Logs"
           },
           {
             "in": "query",
@@ -31,12 +137,12 @@
             "schema": {
               "type": "integer"
             },
-            "description": "ID de la fonctionnalité pour filtrer les logs"
+            "description": "Feature ID to filter Logs"
           }
         ],
         "responses": {
           "200": {
-            "description": "Liste des logs",
+            "description": "List of Logs retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -66,19 +172,25 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid query parameter"
+          },
           "404": {
-            "description": "Utilisateur non trouvé"
+            "description": "User not found"
           },
           "500": {
-            "description": "Erreur interne du serveur"
+            "description": "Internal server error"
           }
         }
       }
     },
     "/user/register": {
       "post": {
-        "summary": "Inscription d'un utilisateur",
-        "description": "Crée un nouvel utilisateur avec le rôle de client.",
+        "summary": "User registration",
+        "tags": [
+          "User"
+        ],
+        "description": "Creates a new user with the client role.",
         "requestBody": {
           "required": true,
           "content": {
@@ -99,18 +211,24 @@
         },
         "responses": {
           "201": {
-            "description": "Inscription réussie"
+            "description": "Registration successful"
+          },
+          "403": {
+            "description": "User already exists"
           },
           "500": {
-            "description": "Erreur lors de l'inscription"
+            "description": "Server error during registration"
           }
         }
       }
     },
     "/user/login": {
       "post": {
-        "summary": "Connexion de l'utilisateur",
-        "description": "Authentifie un utilisateur et retourne un token JWT.",
+        "summary": "User login",
+        "tags": [
+          "User"
+        ],
+        "description": "Authenticates a user and returns a JWT token.",
         "requestBody": {
           "required": true,
           "content": {
@@ -131,21 +249,27 @@
         },
         "responses": {
           "200": {
-            "description": "Connexion réussie"
+            "description": "Login successful"
+          },
+          "400": {
+            "description": "Missing username or password"
           },
           "401": {
-            "description": "Identifiants invalides"
+            "description": "Invalid credentials"
           },
           "500": {
-            "description": "Erreur lors de la connexion"
+            "description": "Server error during login"
           }
         }
       }
     },
     "/user": {
       "delete": {
-        "summary": "Supprime un utilisateur",
-        "description": "Supprime un utilisateur spécifié par le nom d'utilisateur.",
+        "summary": "Delete a user",
+        "tags": [
+          "User"
+        ],
+        "description": "Deletes a user specified by username.",
         "security": [
           {
             "bearerAuth": []
@@ -168,24 +292,27 @@
         },
         "responses": {
           "200": {
-            "description": "Utilisateur supprimé avec succès"
+            "description": "User successfully deleted"
           },
           "403": {
-            "description": "Accès refusé"
+            "description": "Access denied or forbidden action"
           },
           "404": {
-            "description": "Utilisateur non trouvé"
+            "description": "User not found"
           },
           "500": {
-            "description": "Erreur lors de la suppression"
+            "description": "Server error during deletion"
           }
         }
       }
     },
     "/user/logout": {
       "post": {
-        "summary": "Déconnexion de l'utilisateur",
-        "description": "Invalide le token de l'utilisateur connecté.",
+        "summary": "User logout",
+        "tags": [
+          "User"
+        ],
+        "description": "Invalidates the logged-in user's token.",
         "security": [
           {
             "bearerAuth": []
@@ -193,20 +320,171 @@
         ],
         "responses": {
           "200": {
-            "description": "Déconnexion réussie"
+            "description": "Logout successful"
           },
           "401": {
-            "description": "Token invalide"
+            "description": "Invalid token"
+          },
+          "404": {
+            "description": "User not found"
           },
           "500": {
-            "description": "Erreur lors de la déconnexion"
+            "description": "Server error during logout"
+          }
+        }
+      }
+    },
+    "/email-verifier": {
+      "get": {
+        "summary": "Verify an email address",
+        "tags": [
+          "Features"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "description": "The email address to verify",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email verification result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Verification status"
+                    },
+                    "result": {
+                      "type": "string",
+                      "description": "Additional information about the email"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Email is required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/email-spammer": {
+      "get": {
+        "summary": "Send multiple emails to a recipient",
+        "tags": [
+          "Features"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "description": "The recipient's email address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "description": "Number of emails to send",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Emails sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Confirmation message with the number of emails sent"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input (missing or invalid email/count)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message explaining the issue"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message if something went wrong"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   },
-  "components": {
-
-  },
+  "components": {},
   "tags": []
 }

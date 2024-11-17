@@ -38,6 +38,7 @@ app.use(express.static('public'));
 import logsMiddleware from "./middlewares/logs.js";
 import verifyToken from "./middlewares/verifyToken.js";
 import isAdmin from "./middlewares/isAdmin.js";
+import permissionsFeatures from "./middlewares/permissionsFeatures.js";
 
 // Routes API
 import UsersRoutes from "./routes/API/Users/index.js";
@@ -54,7 +55,7 @@ app.use('/', express.Router().get("/", (req, res) => {
 app.use('/user', UsersRoutes);
 app.use('/Logs', [verifyToken, isAdmin], LogsRoutes);
 app.use('/accessFeatures', [verifyToken, isAdmin], AccessFeaturesRoutes);
-app.use('/features', FeaturesRoutes);
+app.use('/features', [verifyToken, permissionsFeatures], FeaturesRoutes);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.get("/swagger.json", (req, res) => {
