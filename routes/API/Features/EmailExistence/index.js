@@ -24,9 +24,12 @@ const router = express.Router();
  *             schema:
  *               type: object
  *               properties:
- *                 data:
- *                   type: object
- *                   description: The response from Hunter.io API
+ *                 status:
+ *                   type: string
+ *                   description: Verification status
+ *                 result:
+ *                   type: string
+ *                   description: Additional information about the email
  *       400:
  *         description: Bad Request - Email is required
  *         content:
@@ -62,9 +65,20 @@ router.get('/', async (req, res) => {
             },
         });
 
-        return res.status(200).json(response.data);
+        const verificationData = response.data.data;
+        return res.status(200).json({
+            status: verificationData.status,
+            result: verificationData.result || "Unknown",
+        });
     } catch (error) {
-        console.error("Error verifying email:", error);
+        console.error("Error verifying email:", error.message);
+
+        if (error.response) {
+            return res.status(error.response.status).json({
+                message: error.response.data || "Error from Hunter.io API",
+            });
+        }
+
         return res.status(500).json({ message: "Internal server error." });
     }
 });

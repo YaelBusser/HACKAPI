@@ -7,7 +7,7 @@ course.
 ## Features
 
 - <code style="color: green;">Email existence verification tool.</code>
-- <code style="color: red;">Email spammer (content + number of sends).</code>
+- <code style="color: orange;">Email spammer (content + number of sends).</code>
 - <code style="color: red;">Phishing service (create a custom phishing webpage - backed by AI!).</code>
 - <code style="color: red;">Check if the password is on the list of most common
   passwords (https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt).</code>
@@ -52,6 +52,8 @@ the database.
     - `PORT=4000`
     - `JWT_SECRET=hackapiJWT`
     - `API_KEY_HUNTER_IO="youApiKey"` => créer votre compte sur https://hunter.io et mettez votre clé d'api.
+    - `EMAIL_APP_DEVMDS="developpermds@gmail.com"`
+    - `PASSWORD_APP_DEVMDS="ncfe ldrg aofx zcod""`
 
 3. To launch the API, simply run the following command:
    ```bash
@@ -73,4 +75,7 @@ Voir les routes :
 Pour voir le swagger, rendez-vous sur ce lien : http://localhost:4000/api-docs
 Vous pouvez sinon récupérer le fichier swagger/swagger.json et l'importer sur ce
 lien : https://swagger.io/tools/swagger-ui/
+
+- Features
+Pour utiliser les fonctionnalités, référez-vous au fichier postman dans le dossier "features".
 
