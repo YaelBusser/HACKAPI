@@ -1170,7 +1170,45 @@
 				},
 				{
 					"name": "Retrieve All Domains",
-					"item": []
+					"item": [
+						{
+							"name": "Retrieve all domains",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:4000/features/retrieve-all-domains",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"retrieve-all-domains"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Secure Password Generator",

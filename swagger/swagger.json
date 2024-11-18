@@ -409,7 +409,7 @@
       "get": {
         "summary": "Send multiple emails to a recipient",
         "tags": [
-          "Features"
+          "Feature - Email spammer"
         ],
         "parameters": [
           {
@@ -475,6 +475,75 @@
                     "message": {
                       "type": "string",
                       "description": "Error message if something went wrong"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/check-password": {
+      "get": {
+        "summary": "Vérifie si un mot de passe est dans la liste des mots de passe les plus communs",
+        "tags": [
+          "Feature - Password check"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "password",
+            "required": true,
+            "description": "Le mot de passe à vérifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Résultat de la vérification du mot de passe",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message indiquant si le mot de passe est commun ou peu commun"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Le mot de passe est requis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Erreur indiquant que le mot de passe est requis"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Message d'erreur pour l'échec de la récupération des mots de passe"
                     }
                   }
                 }
@@ -693,6 +762,149 @@
                   "properties": {
                     "error": {
                       "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subdomains": {
+      "get": {
+        "summary": "Récupère tous les sous-domaines d'un domaine donné",
+        "tags": [
+          "Feature - Retrieve all domains & subdomains"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "domain",
+            "required": true,
+            "description": "Le nom de domaine pour lequel récupérer les sous-domaines",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sous-domaines récupérés avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "domain": {
+                      "type": "string",
+                      "description": "Le domaine principal"
+                    },
+                    "subdomains": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Domaine manquant",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/secure-password-generator": {
+      "get": {
+        "summary": "Génère un mot de passe sécurisé",
+        "tags": [
+          "Feature - Secure password generator"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "length",
+            "required": false,
+            "description": "La longueur du mot de passe à générer. Par défaut, il est de 12 caractères.",
+            "schema": {
+              "type": "integer",
+              "default": 12
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mot de passe généré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "password": {
+                      "type": "string",
+                      "description": "Le mot de passe généré"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Longueur du mot de passe invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Message d'erreur concernant la longueur"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Message d'erreur pour tout problème survenu"
                     }
                   }
                 }

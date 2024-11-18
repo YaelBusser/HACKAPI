@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const SECRET_KEY = process.env.JWT_SECRET;
 
 export default async function (req, res, next) {
-    const token = req.headers['x-access-token'] || req.headers['authorization'];
+    const token = req.headers['authorization'];
 
     if (!token) {
         return res.status(403).send({message: 'No token provided!'});
