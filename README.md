@@ -8,7 +8,7 @@ course.
 
 - <code style="color: green;">Email existence verification tool.</code>
 - <code style="color: green;">Email spammer (content + number of sends).</code>
-- <code style="color: orange;">Phishing service (create a custom phishing webpage - backed by AI!).</code>
+- <code style="color: greeng;">Phishing service (create a custom phishing webpage - backed by AI!).</code>
 - <code style="color: red;">Check if the password is on the list of most common
   passwords (https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt).</code>
 - <code style="color: red;">Retrieve all domains & subdomains associated with a Domain Name.</code>
