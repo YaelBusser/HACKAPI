@@ -8,7 +8,7 @@ const router = express.Router();
  * /email-spammer:
  *   get:
  *     summary: Send multiple emails to a recipient
- *     tags: [Features]
+ *     tags: [Feature - Email spammer]
  *     parameters:
  *       - in: query
  *         name: email

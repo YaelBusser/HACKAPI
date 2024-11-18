@@ -8,21 +8,21 @@ course.
 
 - <code style="color: green;">Email existence verification tool.</code>
 - <code style="color: green;">Email spammer (content + number of sends).</code>
-- <code style="color: greeng;">Phishing service (create a custom phishing webpage - backed by AI!).</code>
-- <code style="color: red;">Check if the password is on the list of most common
+- <code style="color: green;">Phishing service (create a custom phishing webpage - backed by AI!).</code>
+- <code style="color: orange;">Check if the password is on the list of most common
   passwords (https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt).</code>
 - <code style="color: red;">Retrieve all domains & subdomains associated with a Domain Name.</code>
 - <code style="color: red;">DDoS.</code>
 - <code style="color: red;">Random image change (find an API that does this ^^).</code>
-- <code style="color: red;">Generate fake identity => use the Faker library!</code>
-    - <code style="color: red;">faker JS: https://fakerjs.dev/ </code>
+- <code style="color: red;">Generate fake identity => use the Faker library! (faker JS: https://fakerjs.dev/)</code>
 - <code style="color: red;">Information crawler about a person (from a first/last name).</code>
 - <code style="color: red;">Secure password generator.</code>
 
 ## Obligations
 
 - <code style="color: green;">Control access to your API with a login system based on JWT.</code>
-- <code style="color: green;">Set up a permissions system, manageable by administrators, which defines which features can
+- <code style="color: green;">Set up a permissions system, manageable by administrators, which defines which features
+  can
   be accessed by each user.</code>
 - <code style="color: green;">Implement an internal logging system, accessible only to admins, to track:</code>
     - <code style="color: green;">the latest actions performed,</code>
@@ -77,5 +77,5 @@ Vous pouvez sinon récupérer le fichier swagger/swagger.json et l'importer sur 
 lien : https://swagger.io/tools/swagger-ui/
 
 - Features
-Pour utiliser les fonctionnalités, référez-vous au fichier postman dans le dossier "features".
+  Pour utiliser les fonctionnalités, référez-vous au fichier postman et ensuite le dossier "features".
 
