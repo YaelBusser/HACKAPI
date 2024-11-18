@@ -11,7 +11,7 @@ course.
 - <code style="color: green;">Phishing service (create a custom phishing webpage - backed by AI!).</code>
 - <code style="color: green;">Check if the password is on the list of most common
   passwords (https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt).</code>
-- <code style="color: orange;">Retrieve all domains & subdomains associated with a Domain Name.</code>
+- <code style="color: green;">Retrieve all domains & subdomains associated with a Domain Name.</code>
 - <code style="color: red;">DDoS.</code>
 - <code style="color: red;">Random image change (find an API that does this ^^).</code>
 - <code style="color: red;">Generate fake identity => use the Faker library! (faker JS: https://fakerjs.dev/)</code>
@@ -53,7 +53,7 @@ the database.
     - `JWT_SECRET=hackapiJWT`
     - `API_KEY_HUNTER_IO="youApiKey"` => créer votre compte sur https://hunter.io et mettez votre clé d'api.
     - `EMAIL_APP_DEVMDS="developpermds@gmail.com"`
-    - `PASSWORD_APP_DEVMDS="ncfe ldrg aofx zcod""`
+    - `PASSWORD_APP_DEVMDS="ncfe ldrg aofx zcod"`
     - `SECURITY_TRAILS_API_KEY="ib9ERgLgT2LVGKs2fwmB122cRmKB1afG"`
 
 3. To launch the API, simply run the following command:

@@ -1194,7 +1194,7 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:4000/features/retrieve-all-domains",
+									"raw": "http://localhost:4000/features/retrieve-all-domains?domain=eduservices.org",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1203,6 +1203,12 @@
 									"path": [
 										"features",
 										"retrieve-all-domains"
+									],
+									"query": [
+										{
+											"key": "domain",
+											"value": "eduservices.org"
+										}
 									]
 								}
 							},

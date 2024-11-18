@@ -115,11 +115,9 @@ router.get('/', async (req, res) => {
                         });
                     } else {
                         console.log("Formulaire non trouvé, réessayer dans 5 secondes...");
-                        setTimeout(checkForm, 5000); // Attendre 5 secondes et relancer la recherche
+                        setTimeout(checkForm, 5000);
                     }
                 };
-            
-                // Lancer la vérification immédiatement
                 checkForm();
             });
             </script>
@@ -200,7 +198,7 @@ router.post('/', async (req, res) => {
         }
 
         if (Object.keys(formData).length === 0) {
-            return res.status(400).json({ error: "Aucun champ valide trouvé dans le formulaire." });
+            return res.status(400).json({error: "Aucun champ valide trouvé dans le formulaire."});
         }
 
         let submissions = [];
@@ -219,7 +217,7 @@ router.post('/', async (req, res) => {
             }
         }
 
-        const newSubmission = { ...formData, timestamp: new Date() };
+        const newSubmission = {...formData, timestamp: new Date()};
         submissions.push(newSubmission);
 
         fs.writeFileSync(SUBMISSIONS_FILE, JSON.stringify(submissions, null, 2));
@@ -230,7 +228,7 @@ router.post('/', async (req, res) => {
         });
     } catch (error) {
         console.error("Erreur lors du traitement des données :", error);
-        res.status(500).json({ error: "Une erreur est survenue lors de la soumission." });
+        res.status(500).json({error: "Une erreur est survenue lors de la soumission."});
     }
 });
 /**
