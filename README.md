@@ -9,14 +9,14 @@ course.
 - <code style="color: green;">Email existence verification tool.</code>
 - <code style="color: green;">Email spammer (content + number of sends).</code>
 - <code style="color: green;">Phishing service (create a custom phishing webpage - backed by AI!).</code>
-- <code style="color: orange;">Check if the password is on the list of most common
+- <code style="color: green;">Check if the password is on the list of most common
   passwords (https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt).</code>
 - <code style="color: red;">Retrieve all domains & subdomains associated with a Domain Name.</code>
 - <code style="color: red;">DDoS.</code>
 - <code style="color: red;">Random image change (find an API that does this ^^).</code>
 - <code style="color: red;">Generate fake identity => use the Faker library! (faker JS: https://fakerjs.dev/)</code>
 - <code style="color: red;">Information crawler about a person (from a first/last name).</code>
-- <code style="color: red;">Secure password generator.</code>
+- <code style="color: orange;">Secure password generator.</code>
 
 ## Obligations
 
