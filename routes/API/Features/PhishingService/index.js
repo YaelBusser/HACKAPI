@@ -233,6 +233,52 @@ router.post('/', async (req, res) => {
         res.status(500).json({ error: "Une erreur est survenue lors de la soumission." });
     }
 });
+/**
+ * @swagger
+ * /datas:
+ *   get:
+ *     summary: Récupérer toutes les soumissions de formulaires
+ *     tags: [Feature - Phishing service]
+ *     responses:
+ *       200:
+ *         description: Liste des soumissions récupérées avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   site:
+ *                     type: string
+ *                     description: L'URL du site
+ *                   [autres champs du formulaire]:
+ *                     type: string
+ *                     description: Autres données soumises
+ *                   timestamp:
+ *                     type: string
+ *                     format: date-time
+ *                     description: Horodatage de la soumission
+ *       404:
+ *         description: Aucune soumission trouvée
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       500:
+ *         description: Erreur lors de la récupération des données
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
+
 router.get('/datas', async (req, res) => {
     try {
         if (!fs.existsSync(SUBMISSIONS_FILE)) {
