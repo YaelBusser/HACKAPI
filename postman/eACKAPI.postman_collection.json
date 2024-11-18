@@ -1036,7 +1036,124 @@
 				},
 				{
 					"name": "Phishing Service",
-					"item": []
+					"item": [
+						{
+							"name": "Phishing generator",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:4000/features/phishing-service?url=https://www.facebook.com/?locale=fr_FR",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"phishing-service"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "https://www.facebook.com/?locale=fr_FR"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send datas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:4000/features/phishing-service/send-datas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"phishing-service",
+										"send-datas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Datas",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:4000/features/phishing-service/datas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"phishing-service",
+										"datas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Random Image Change",
