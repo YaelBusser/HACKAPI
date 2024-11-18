@@ -32,7 +32,6 @@ export default async function (req, res, next) {
         const regex = /\/features\/([^/?]+)/;
         const match = req.originalUrl.match(regex);
         const featureName = match ? match[1] : null;
-
         if (!featureName) {
             return res.status(400).json({ message: "Nom de fonctionnalité manquant dans l'URL." });
         }
