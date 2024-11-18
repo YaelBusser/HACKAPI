@@ -1032,7 +1032,51 @@
 				},
 				{
 					"name": "Password Check",
-					"item": []
+					"item": [
+						{
+							"name": "Password check",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password",
+											"value": "hello",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4000/features/password-check",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"password-check"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Phishing Service",
@@ -1130,7 +1174,51 @@
 				},
 				{
 					"name": "Secure Password Generator",
-					"item": []
+					"item": [
+						{
+							"name": "Secure password",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:4000/features/secure-password-generator?length=16",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"secure-password-generator"
+									],
+									"query": [
+										{
+											"key": "length",
+											"value": "16"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Ddos",
