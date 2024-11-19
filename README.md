@@ -79,4 +79,15 @@ lien : https://swagger.io/tools/swagger-ui/
 
 - Features
   Pour utiliser les fonctionnalités, référez-vous au fichier postman et ensuite le dossier "features".
+- Id_features
+  - 1 - Email address verification tool
+  - 2 - Spam mail (content + number of sends)
+  - 3 - Phising service (creation of a customized phishing...
+  - 4 - Is my password protected ?
+  - 5 - Retrieve all domains & sub-domains associated with...
+  - 6 - DDoS
+  - 7 - Random image change
+  - 8 - Fictitious identity generation
+  - 9 - Person information crawler (based on first / last ...
+  - 10 - Secured password generator
 

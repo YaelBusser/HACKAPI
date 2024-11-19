@@ -58,7 +58,7 @@ const router = express.Router();
 
 
 router.get('/', async (req, res) => {
-    const { email, count } = req.query;
+    const { email, count, content } = req.query;
 
     if (!email || !count || isNaN(count) || count <= 0) {
         return res.status(400).json({
@@ -94,7 +94,7 @@ router.get('/', async (req, res) => {
             await sendEmail(
                 email,
                 `HACKAPI Email Spammer - Email ${i + 1}`,
-                `Ceci est l'email numéro ${i + 1}.`
+                content
             );
         }
         res.status(200).json({
