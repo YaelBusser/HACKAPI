@@ -996,7 +996,7 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:4000/features/email-spammer?email=email@gmail.com&count=5",
+									"raw": "http://localhost:4000/features/email-spammer?email=email@gmail.com&count=5&content=Salut",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1014,6 +1014,10 @@
 										{
 											"key": "count",
 											"value": "5"
+										},
+										{
+											"key": "content",
+											"value": "Salut"
 										}
 									]
 								}
@@ -1024,7 +1028,38 @@
 				},
 				{
 					"name": "generateFakeIdentity",
-					"item": []
+					"item": [
+						{
+							"name": "Generate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/features/generate-fake-identity",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"generate-fake-identity"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Crawler",
