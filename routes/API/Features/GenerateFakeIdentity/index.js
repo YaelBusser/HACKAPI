@@ -11,6 +11,99 @@ const __dirname = path.dirname(__filename);
 const prisma = new PrismaClient();
 const router = express.Router();
 
+/**
+ * @swagger
+ * /features/generate-fake-identity:
+ *   get:
+ *     summary: Génère une fausse identité et l'enregistre dans un fichier JSON
+ *     tags: [Feature - Fake Identity Generator]
+ *     responses:
+ *       200:
+ *         description: Fausse identité générée et sauvegardée avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indique si l'opération a réussi
+ *                 message:
+ *                   type: string
+ *                   description: Message confirmant la création du fichier
+ *                 data:
+ *                   type: object
+ *                   description: Détails de l'identité générée
+ *                   properties:
+ *                     firstName:
+ *                       type: string
+ *                       description: Prénom de la personne générée
+ *                     lastName:
+ *                       type: string
+ *                       description: Nom de famille de la personne générée
+ *                     email:
+ *                       type: string
+ *                       description: Email de la personne générée
+ *                     phone:
+ *                       type: string
+ *                       description: Numéro de téléphone généré
+ *                     birthdate:
+ *                       type: string
+ *                       format: date
+ *                       description: Date de naissance générée
+ *                     favoriteColor:
+ *                       type: string
+ *                       description: Couleur préférée générée
+ *                     sex:
+ *                       type: string
+ *                       description: Sexe généré
+ *                     bio:
+ *                       type: string
+ *                       description: Biographie générée
+ *                     gender:
+ *                       type: string
+ *                       description: Genre généré
+ *                     job:
+ *                       type: string
+ *                       description: Poste ou métier généré
+ *                     address:
+ *                       type: object
+ *                       description: Adresse générée
+ *                       properties:
+ *                         street:
+ *                           type: string
+ *                           description: Rue de l'adresse
+ *                         city:
+ *                           type: string
+ *                           description: Ville de l'adresse
+ *                         state:
+ *                           type: string
+ *                           description: État ou région de l'adresse
+ *                         postalCode:
+ *                           type: string
+ *                           description: Code postal
+ *                         country:
+ *                           type: string
+ *                           description: Pays
+ *       500:
+ *         description: Erreur lors de la génération ou de la sauvegarde
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indique si l'opération a échoué
+ *                 message:
+ *                   type: string
+ *                   description: Message d'erreur
+ *                 error:
+ *                   type: string
+ *                   description: Détails de l'erreur
+ */
+
+
 router.get('/', async (req, res) => {
     try {
         const fakeIdentity = {

@@ -15,7 +15,7 @@ const generateSecurePassword = (length = 12) => {
 
 /**
  * @swagger
- * /secure-password-generator:
+ * /features/secure-password-generator:
  *   get:
  *     summary: Génère un mot de passe sécurisé
  *     tags: [Feature - Secure password generator]

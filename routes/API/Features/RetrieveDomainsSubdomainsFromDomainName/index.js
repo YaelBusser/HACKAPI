@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 const router = express.Router();
 /**
  * @swagger
- * /subdomains:
+ * /features/retrieve-all-domains:
  *   get:
  *     summary: Récupère tous les sous-domaines d'un domaine donné
  *     tags: [Feature - Retrieve all domains & subdomains]

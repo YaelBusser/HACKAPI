@@ -1200,8 +1200,39 @@
 					]
 				},
 				{
-					"name": "Random Image Change",
-					"item": []
+					"name": "Random Image",
+					"item": [
+						{
+							"name": "Random image person",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/features/random-image-person",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"random-image-person"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Retrieve All Domains",

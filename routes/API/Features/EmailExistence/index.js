@@ -5,7 +5,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /email-verifier:
+ * /features/email-existence:
  *   get:
  *     summary: Verify an email address
  *     tags: [Feature - Email Existence]

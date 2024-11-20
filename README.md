@@ -12,9 +12,9 @@ course.
 - <code style="color: green;">Check if the password is on the list of most common
   passwords (https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt).</code>
 - <code style="color: green;">Retrieve all domains & subdomains associated with a Domain Name.</code>
-- <code style="color: red;">DDoS.</code>
-- <code style="color: red;">Random image change (find an API that does this ^^).</code>
-- <code style="color: red;">Generate fake identity => use the Faker library! (faker JS: https://fakerjs.dev/)</code>
+- <code style="color: orange;">DDoS.</code>
+- <code style="color: green;">Random image generator (this person does not exist).</code>
+- <code style="color: green;">Generate fake identity => use the Faker library! (faker JS: https://fakerjs.dev/)</code>
 - <code style="color: red;">Information crawler about a person (from a first/last name).</code>
 - <code style="color: green;">Secure password generator.</code>
 
@@ -86,7 +86,7 @@ lien : https://swagger.io/tools/swagger-ui/
   - 4 - Is my password protected ?
   - 5 - Retrieve all domains & sub-domains associated with...
   - 6 - DDoS
-  - 7 - Random image change
+  - 7 - Random image person generator (thispersondoesntexists))
   - 8 - Fictitious identity generation
   - 9 - Person information crawler (based on first / last ...
   - 10 - Secured password generator

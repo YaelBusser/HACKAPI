@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 31 oct. 2024 à 16:42
+-- Généré le : mer. 20 nov. 2024 à 09:48
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -44,7 +44,7 @@ INSERT INTO `features` (`id`, `label`, `tag_route`) VALUES
 (4, 'Is my password protected ?', 'password-check'),
 (5, 'Retrieve all domains & sub-domains associated with a Domain Name', 'retrieve-all-domains'),
 (6, 'DDoS', 'ddos'),
-(7, 'Random image change', 'random-image-change'),
+(7, 'Random image change', 'random-image-person'),
 (8, 'Fictitious identity generation', 'generate-fake-identity'),
 (9, 'Person information crawler (based on first / last name)', 'crawler'),
 (10, 'Secured password generator', 'secure-password-generator');
@@ -102,8 +102,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `token`, `id_role`) VALUES
-(2, 'admin', '$2a$12$0XZloN9fX7N9YKI.jufNkehHRaiT7whYkZFaTArSUBGLn2CGlYVqe', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTczMDM4OTE3MSwiZXhwIjoxNzYxOTI1MTcxfQ.Il1sXznyLobu51xiLpJUelms9ywAqKfq5J4pBHAfsF0', 1),
-(7, 'Yaël', '$2a$12$0XZloN9fX7N9YKI.jufNkehHRaiT7whYkZFaTArSUBGLn2CGlYVqe', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJZYcOrbCIsImlhdCI6MTczMDI5NjcyMSwiZXhwIjoxNzYxODMyNzIxfQ.O0EtKx36bz-zV3_conMjKlwK-Zrvz2_Z0xOK3h80RKE', 2);
+(2, 'admin', '$2a$12$0XZloN9fX7N9YKI.jufNkehHRaiT7whYkZFaTArSUBGLn2CGlYVqe', NULL, 1),
+(7, 'Yaël', '$2a$12$0XZloN9fX7N9YKI.jufNkehHRaiT7whYkZFaTArSUBGLn2CGlYVqe', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJZYcOrbCIsImlhdCI6MTczMTkxODM0NSwiZXhwIjoxNzYzNDU0MzQ1fQ.Tby_9W6xTaY4h_ISdYLSJEywq3FeUl2vqXwXUiGxm6I', 2);
 
 -- --------------------------------------------------------
 
@@ -168,7 +168,7 @@ ALTER TABLE `features`
 -- AUTO_INCREMENT pour la table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=442;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=792;
 
 --
 -- AUTO_INCREMENT pour la table `roles`
