@@ -15,7 +15,7 @@ course.
 - <code style="color: green;">DDoS.</code>
 - <code style="color: green;">Random image generator (this person does not exist).</code>
 - <code style="color: green;">Generate fake identity => use the Faker library! (faker JS: https://fakerjs.dev/)</code>
-- <code style="color: orange;">Information crawler about a person (from a first/last name).</code>
+- <code style="color: green;">Information crawler about a person (from a first/last name).</code>
 - <code style="color: green;">Secure password generator.</code>
 
 ## Obligations
