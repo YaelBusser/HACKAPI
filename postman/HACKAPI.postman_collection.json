@@ -1063,7 +1063,48 @@
 				},
 				{
 					"name": "Crawler",
-					"item": []
+					"item": [
+						{
+							"name": "Crawling",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/features/crawler?firstname=yael&lastname=busser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"crawler"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "yael"
+										},
+										{
+											"key": "lastname",
+											"value": "busser"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Password Check",
@@ -1332,7 +1373,96 @@
 				},
 				{
 					"name": "Ddos",
-					"item": []
+					"item": [
+						{
+							"name": "Start",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:4000/features/ddos/start?ip=127.0.0.1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"ddos",
+										"start"
+									],
+									"query": [
+										{
+											"key": "ip",
+											"value": "127.0.0.1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stop",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:4000/features/ddos/stop?ip=127.0.0.1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"features",
+										"ddos",
+										"stop"
+									],
+									"query": [
+										{
+											"key": "ip",
+											"value": "127.0.0.1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

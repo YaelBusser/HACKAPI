@@ -12,10 +12,10 @@ course.
 - <code style="color: green;">Check if the password is on the list of most common
   passwords (https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt).</code>
 - <code style="color: green;">Retrieve all domains & subdomains associated with a Domain Name.</code>
-- <code style="color: orange;">DDoS.</code>
+- <code style="color: green;">DDoS.</code>
 - <code style="color: green;">Random image generator (this person does not exist).</code>
 - <code style="color: green;">Generate fake identity => use the Faker library! (faker JS: https://fakerjs.dev/)</code>
-- <code style="color: red;">Information crawler about a person (from a first/last name).</code>
+- <code style="color: orange;">Information crawler about a person (from a first/last name).</code>
 - <code style="color: green;">Secure password generator.</code>
 
 ## Obligations
@@ -68,26 +68,25 @@ You can easily access the hosted application at the following URL:
 
 OR
 
-To interact with the API functionalities, you can use Postman, for instance, to set up the Bearer token.
+To interact with the API functionalities, you can use Postman, for example, to set up the Bearer token.
 
 Next, open Postman and import the collection (`HACKAPI.postman_collection.json`) located in the Postman folder.
 
-Voir les routes :
-Pour voir le swagger, rendez-vous sur ce lien : http://localhost:4000/api-docs
-Vous pouvez sinon récupérer le fichier swagger/swagger.json et l'importer sur ce
-lien : https://swagger.io/tools/swagger-ui/
+View the routes:
+To access the Swagger UI, visit this link: http://localhost:4000/api-docs
+Alternatively, you can download the `swagger/swagger.json` file and import it at this link: https://swagger.io/tools/swagger-ui/
 
-- Features
-  Pour utiliser les fonctionnalités, référez-vous au fichier postman et ensuite le dossier "features".
-- Id_features
-  - 1 - Email address verification tool
-  - 2 - Spam mail (content + number of sends)
-  - 3 - Phising service (creation of a customized phishing...
-  - 4 - Is my password protected ?
-  - 5 - Retrieve all domains & sub-domains associated with...
-  - 6 - DDoS
-  - 7 - Random image person generator (thispersondoesntexists))
-  - 8 - Fictitious identity generation
-  - 9 - Person information crawler (based on first / last ...
-  - 10 - Secured password generator
+### Features
+To use the features, refer to the Postman collection and then the "features" folder.
 
+### Id_features
+- **1** - Email address verification tool
+- **2** - Spam mail (content + number of sends)
+- **3** - Phishing service (creation of a customized phishing...)
+- **4** - Is my password protected?
+- **5** - Retrieve all domains & subdomains associated with...
+- **6** - DDoS
+- **7** - Random image person generator (thispersondoesntexists)
+- **8** - Fictitious identity generation
+- **9** - Person information crawler (based on first / last name...)
+- **10** - Secured password generator
