@@ -85,10 +85,10 @@ OR
 
 To interact with the API functionalities, you can use Postman, for example, to set up the Bearer token.
 
-1. Postman
-Next, open Postman and import the collection (`HACKAPI.postman_collection.json`) located in the Postman folder.
+g#### Postman
+Next, open Postman and import the collection (`HACKAPI.postman_collection.json`) located in the Postman folder. 
 
-2. Swagger
+### Swagger
 To access the Swagger UI, visit this link: http://localhost:4000/api-docs
 Alternatively, you can download the `swagger/swagger.json` or url (http://localhost:4000/swagger.json) file and import
 it at this
