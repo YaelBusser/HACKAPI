@@ -59,7 +59,8 @@ npm install
     - `DATABASE_URL=mysql://root:@localhost:3306/hackapi?schema=public`
     - `PORT=4000`
     - `JWT_SECRET=hackapiJWT`
-    - `API_KEY_HUNTER_IO="youApiKey"` => créer votre compte sur https://hunter.io et mettez votre clé d'api.
+    - `API_KEY_HUNTER_IO="f8a019855c4d19fb06628c03578695f3bb0a56e0"`
+    - `SECURITY_TRAILS_API_KEY="ib9ERgLgT2LVGKs2fwmB122cRmKB1afG"`
     - `EMAIL_APP_DEVMDS="developpermds@gmail.com"`
     - `PASSWORD_APP_DEVMDS="ncfe ldrg aofx zcod"`
     - `SECURITY_TRAILS_API_KEY="ib9ERgLgT2LVGKs2fwmB122cRmKB1afG"`
