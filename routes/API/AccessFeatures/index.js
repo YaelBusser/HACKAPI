@@ -10,6 +10,8 @@ const router = express.Router();
  *   post:
  *     summary: Grant permission to a user for a feature
  *     tags: [Access Features]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -81,6 +83,8 @@ router.post('/grant', async (req, res) => {
  *   delete:
  *     summary: Revoke permission from a user for a feature
  *     tags: [Access Features]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -144,6 +148,8 @@ router.delete('/revoke', async (req, res) => {
  *   get:
  *     summary: Get all features and their associated users
  *     tags: [Access Features]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of features with their users.

@@ -11,12 +11,26 @@
       "description": "Serveur local"
     }
   ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
   "paths": {
     "/access-features/grant": {
       "post": {
         "summary": "Grant permission to a user for a feature",
         "tags": [
           "Access Features"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "requestBody": {
           "required": true,
@@ -63,6 +77,11 @@
         "tags": [
           "Access Features"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -105,6 +124,11 @@
         "tags": [
           "Access Features"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "A list of features with their users."
@@ -122,6 +146,11 @@
           "Logs"
         ],
         "description": "Fetches a list of Logs filtered by username or feature ID, or both. If no filter is provided, returns the most recent Logs.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "query",
@@ -341,6 +370,9 @@
         "tags": [
           "Feature - DDOS"
         ],
+        "security": {
+          "bearerAuth": []
+        },
         "parameters": [
           {
             "in": "query",
@@ -412,6 +444,11 @@
         "tags": [
           "Feature - DDOS"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "query",
@@ -481,6 +518,11 @@
         "summary": "Verify an email address",
         "tags": [
           "Feature - Email Existence"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "parameters": [
           {
@@ -552,6 +594,11 @@
         "summary": "Send multiple emails to a recipient",
         "tags": [
           "Feature - Email spammer"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "parameters": [
           {
@@ -631,6 +678,11 @@
         "summary": "Génère une fausse identité et l'enregistre dans un fichier JSON",
         "tags": [
           "Feature - Fake Identity Generator"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -759,6 +811,11 @@
         "tags": [
           "Feature - Crawler"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "query",
@@ -862,6 +919,11 @@
         "tags": [
           "Feature - Password check"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "query",
@@ -930,6 +992,11 @@
         "summary": "Scraper un site et générer un fichier HTML modifié",
         "tags": [
           "Feature - Phishing service"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "parameters": [
           {
@@ -1000,6 +1067,11 @@
         "summary": "Soumettre les données d'un formulaire",
         "tags": [
           "Feature - Phishing service"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "requestBody": {
           "required": true,
@@ -1081,6 +1153,11 @@
         "tags": [
           "Feature - Phishing service"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Liste des soumissions récupérées avec succès",
@@ -1149,6 +1226,11 @@
         "tags": [
           "Feature - Random image generator"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Image téléchargée avec succès",
@@ -1194,6 +1276,11 @@
         "summary": "Récupère tous les sous-domaines d'un domaine donné",
         "tags": [
           "Feature - Retrieve all domains & subdomains"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "parameters": [
           {
@@ -1268,6 +1355,11 @@
         "tags": [
           "Feature - Secure password generator"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "query",
@@ -1332,9 +1424,6 @@
         }
       }
     }
-  },
-  "components": {
-
   },
   "tags": []
 }
