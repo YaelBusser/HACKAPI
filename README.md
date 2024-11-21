@@ -76,10 +76,13 @@ npx prisma generate
    npm run dev
 
 ## Usage Instructions
+
 ### logs
+
 To view the logs, you can execute this request (requirement: logged in as an admin): http://localhost:4000/logs
 
 ### Access
+
 You can easily access the hosted application at the following URL:
 
 OR
@@ -87,15 +90,16 @@ OR
 To interact with the API functionalities, you can use Postman, for example, to set up the Bearer token.
 
 #### Postman
-Next, open Postman and import the collection (`HACKAPI.postman_collection.json`) located in the Postman folder. 
+
+Next, open Postman and import the collection (`HACKAPI.postman_collection.json`) located in the Postman folder.
 
 ### Swagger
-To access the Swagger UI, visit this link: http://localhost:4000/api-docs
+
+To access the Swagger UI, visit this link: http://localhost:4000/api-docs . </br>
 Alternatively, you can download the `swagger/swagger.json` or url (http://localhost:4000/swagger.json) file and import
-it at this
-link: https://swagger.io/tools/swagger-ui/,
-You need to put your token JWT by clicking on **"Authorize"** on the top corner on swagger.io, you can get your token JWT
-with request **/user/login**, it returns the token JWT.
+it at this link: https://swagger.io/tools/swagger-ui/,
+You need to put your token JWT by clicking on **"Authorize"** on the top corner on swagger.io, you can get your token
+JWT with request **/user/login**, it returns the token JWT.
 
 ### Features
 
