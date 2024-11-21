@@ -98,7 +98,7 @@ Next, open Postman and import the collection (`HACKAPI.postman_collection.json`)
 To access the Swagger UI, visit this link: http://localhost:4000/api-docs . </br>
 Alternatively, you can download the `swagger/swagger.json` or url (http://localhost:4000/swagger.json) file and import
 it at this link: https://swagger.io/tools/swagger-ui/,
-You need to put your token JWT by clicking on **"Authorize"** on the top corner on swagger.io, you can get your token
+You need to put your token JWT by clicking on **"Authorize"** on the top corner on swagger.io (needed for request that you must be connected and to see if you have permission to use it)g, you can get your token
 JWT with request **/user/login**, it returns the token JWT.
 
 ### Features
