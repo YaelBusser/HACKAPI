@@ -45,9 +45,17 @@ the database.
 
 ## Project Installation
 
-1. Host the `hackapi` database (found in the `data-save` folder) on your local server (I personally use XAMPP).
+1. Installation
 
-2. Create and define the following variables in the `.env` file:
+```bash
+git clone https://github.com/YaelBusser/HACKAPI.git
+cd HACKAPI
+npm install
+```
+
+2. Host the `hackapi` database (found in the `data-save` folder) on your local server (I personally use XAMPP).
+
+3. Create and define the following variables in the `.env` file:
     - `DATABASE_URL=mysql://root:@localhost:3306/hackapi?schema=public`
     - `PORT=4000`
     - `JWT_SECRET=hackapiJWT`
@@ -56,11 +64,11 @@ the database.
     - `PASSWORD_APP_DEVMDS="ncfe ldrg aofx zcod"`
     - `SECURITY_TRAILS_API_KEY="ib9ERgLgT2LVGKs2fwmB122cRmKB1afG"`
 
-3. To launch the API, simply run the following command:
+4. To launch the API, simply run the following command:
    ```bash
    npm run dev
 
-4. To view the logs, you can execute this request (requirement: logged in as an admin): http://localhost:4000/logs
+5. To view the logs, you can execute this request (requirement: logged in as an admin): http://localhost:4000/logs
 
 ## Usage Instructions
 
@@ -74,12 +82,15 @@ Next, open Postman and import the collection (`HACKAPI.postman_collection.json`)
 
 View the routes:
 To access the Swagger UI, visit this link: http://localhost:4000/api-docs
-Alternatively, you can download the `swagger/swagger.json` file and import it at this link: https://swagger.io/tools/swagger-ui/
+Alternatively, you can download the `swagger/swagger.json` file and import it at this
+link: https://swagger.io/tools/swagger-ui/
 
 ### Features
+
 To use the features, refer to the Postman collection and then the "features" folder.
 
 ### Id_features
+
 - **1** - Email address verification tool
 - **2** - Spam mail (content + number of sends)
 - **3** - Phishing service (creation of a customized phishing...)
