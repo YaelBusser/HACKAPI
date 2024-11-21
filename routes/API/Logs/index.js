@@ -11,6 +11,8 @@ const router = express.Router();
  *     summary: Retrieve Logs
  *     tags: [Logs]
  *     description: Fetches a list of Logs filtered by username or feature ID, or both. If no filter is provided, returns the most recent Logs.
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: username

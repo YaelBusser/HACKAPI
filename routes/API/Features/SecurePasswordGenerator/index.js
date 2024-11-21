@@ -19,6 +19,8 @@ const generateSecurePassword = (length = 12) => {
  *   get:
  *     summary: Génère un mot de passe sécurisé
  *     tags: [Feature - Secure password generator]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: length

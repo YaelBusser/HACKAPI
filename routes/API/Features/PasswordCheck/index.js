@@ -11,6 +11,8 @@ const PASSWORDS_URL = 'https://raw.githubusercontent.com/danielmiessler/SecLists
  *   get:
  *     summary: Vérifie si un mot de passe est dans la liste des mots de passe les plus communs
  *     tags: [Feature - Password check]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: password

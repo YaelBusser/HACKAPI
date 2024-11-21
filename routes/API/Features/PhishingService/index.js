@@ -22,6 +22,8 @@ const getDomainName = (urlStr) => {
  *   get:
  *     summary: Scraper un site et générer un fichier HTML modifié
  *     tags: [Feature - Phishing service]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: url
@@ -143,6 +145,8 @@ router.get('/', async (req, res) => {
  *   post:
  *     summary: Soumettre les données d'un formulaire
  *     tags: [Feature - Phishing service]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -237,6 +241,8 @@ router.post('/', async (req, res) => {
  *   get:
  *     summary: Récupérer toutes les soumissions de formulaires
  *     tags: [Feature - Phishing service]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Liste des soumissions récupérées avec succès

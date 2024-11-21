@@ -10,6 +10,8 @@ const router = express.Router();
  *   get:
  *     summary: Récupère tous les sous-domaines d'un domaine donné
  *     tags: [Feature - Retrieve all domains & subdomains]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: domain

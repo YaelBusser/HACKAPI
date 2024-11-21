@@ -9,6 +9,8 @@ const router = express.Router();
  *   get:
  *     summary: Recherche des résultats sur Google en fonction des paramètres fournis
  *     tags: [Feature - Crawler]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: firstname

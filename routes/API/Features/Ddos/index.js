@@ -24,6 +24,8 @@ const pingIP = (ip, callback) => {
  *     summary: Démarre un ping continu pour une adresse IP spécifiée.
  *     description: Lance un ping toutes les secondes vers l'adresse IP donnée.
  *     tags: [Feature - DDOS]
+ *     security:
+ *        bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: ip
@@ -88,6 +90,8 @@ router.get("/start", async (req, res) => {
  *     summary: Arrête le ping en cours pour une adresse IP spécifiée.
  *     description: Permet d'arrêter un ping en cours vers l'adresse IP donnée.
  *     tags: [Feature - DDOS]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: ip

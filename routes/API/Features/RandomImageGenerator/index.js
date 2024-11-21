@@ -16,6 +16,8 @@ const __dirname = path.dirname(__filename);
  *   get:
  *     summary: Télécharge une image depuis "https://thispersondoesnotexist.com" et l'enregistre localement
  *     tags: [Feature - Random image generator]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Image téléchargée avec succès

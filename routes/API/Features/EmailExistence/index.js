@@ -9,6 +9,8 @@ const router = express.Router();
  *   get:
  *     summary: Verify an email address
  *     tags: [Feature - Email Existence]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: email

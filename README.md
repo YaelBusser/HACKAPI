@@ -64,8 +64,14 @@ npm install
     - `EMAIL_APP_DEVMDS="developpermds@gmail.com"`
     - `PASSWORD_APP_DEVMDS="ncfe ldrg aofx zcod"`
     - `SECURITY_TRAILS_API_KEY="ib9ERgLgT2LVGKs2fwmB122cRmKB1afG"`
+    - `SERPAPI_KEY="c4ba3f689564fedc23e2d9e367d5afcd525416e11d17a26daeb00f62b77da819"`
+4. Generate scheme PRISMA
 
-4. To launch the API, simply run the following command:
+```bash
+npx prisma generate 
+```
+
+5. To launch the API, simply run the following command:
    ```bash
    npm run dev
 
@@ -79,12 +85,16 @@ OR
 
 To interact with the API functionalities, you can use Postman, for example, to set up the Bearer token.
 
+1. Postman
 Next, open Postman and import the collection (`HACKAPI.postman_collection.json`) located in the Postman folder.
 
-View the routes:
+2. Swagger
 To access the Swagger UI, visit this link: http://localhost:4000/api-docs
-Alternatively, you can download the `swagger/swagger.json` file and import it at this
-link: https://swagger.io/tools/swagger-ui/
+Alternatively, you can download the `swagger/swagger.json` or url (http://localhost:4000/swagger.json) file and import
+it at this
+link: https://swagger.io/tools/swagger-ui/,
+You need to put your token JWT by clicking on **"Authorize"** on the top corner on swagger.io, you can get your token JWT
+with request **/user/login**, it returns the token JWT.
 
 ### Features
 

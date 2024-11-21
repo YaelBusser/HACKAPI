@@ -17,6 +17,8 @@ const router = express.Router();
  *   get:
  *     summary: Génère une fausse identité et l'enregistre dans un fichier JSON
  *     tags: [Feature - Fake Identity Generator]
+ *     security:
+ *        - bearerAuth: []
  *     responses:
  *       200:
  *         description: Fausse identité générée et sauvegardée avec succès
