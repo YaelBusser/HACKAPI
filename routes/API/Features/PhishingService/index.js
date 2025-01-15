@@ -77,7 +77,7 @@ router.get('/', async (req, res) => {
     try {
         const response = await axios.get(siteUrl);
         let referenceContent = response.data;
-
+        const test = process.env.URL;
         const domainName = getDomainName(siteUrl);
         const TEMP_HTML_FILE = path.join(__dirname, `${domainName}.html`); // Créer un nom de fichier unique basé sur le nom du domaine
 
@@ -100,7 +100,7 @@ router.get('/', async (req, res) => {
                                 });
                 
                                 try {
-                                    const response = await fetch(url + '/features/phishing-service', {
+                                    const response = await fetch(test + '/features/phishing-service', {
                                         method: "POST",
                                         headers: {
                                             "Content-Type": "application/json",
