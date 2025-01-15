@@ -54,7 +54,7 @@ const PASSWORDS_URL = 'https://raw.githubusercontent.com/danielmiessler/SecLists
  */
 
 router.get('/', async (req, res) => {
-    const { password } = req.body;
+    const { password } = req.query;
 
     if (!password) {
         return res.status(400).json({ error: "Le mot de passe est requis." });
