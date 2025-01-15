@@ -7,7 +7,7 @@ const PASSWORDS_URL = 'https://raw.githubusercontent.com/danielmiessler/SecLists
 
 /**
  * @swagger
- * /features/check-password:
+ * /features/password-check:
  *   get:
  *     summary: Vérifie si un mot de passe est dans la liste des mots de passe les plus communs
  *     tags: [Feature - Password check]
