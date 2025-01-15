@@ -14,7 +14,7 @@ const router = express.Router();
 const SUBMISSIONS_FILE = path.join(__dirname, "datas.json");
 
 const getDomainName = (urlStr) => {
-    const parsedUrl = new url.URL(urlStr);
+    const parsedUrl = new URL(urlStr);
     return parsedUrl.hostname.replace(/^www\./, ''); // Enlever "www." si présent
 };
 /**
@@ -77,7 +77,6 @@ router.get('/', async (req, res) => {
     try {
         const response = await axios.get(siteUrl);
         let referenceContent = response.data;
-        const test = process.env.URL;
         const domainName = getDomainName(siteUrl);
         const TEMP_HTML_FILE = path.join(__dirname, `${domainName}.html`); // Créer un nom de fichier unique basé sur le nom du domaine
 
