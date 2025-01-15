@@ -36,6 +36,8 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
     try {
         const { username, password } = req.body;
+        console.log("username", username);
+        console.log("password", password);
         const existingUser = await prisma.users.findFirst({ where: { username } });
         if (existingUser) return res.status(403).json({ message: "User already exists." });
 
