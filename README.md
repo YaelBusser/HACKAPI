@@ -58,6 +58,7 @@ npm install
 3. Create and define the following variables in the `.env` file:
     - `DATABASE_URL=mysql://root:@localhost:3306/hackapi?schema=public`
     - `PORT=4000`
+    - `URL="locahostORonlinehostg`
     - `JWT_SECRET=hackapiJWT`
     - `API_KEY_HUNTER_IO="f8a019855c4d19fb06628c03578695f3bb0a56e0"`
     - `SECURITY_TRAILS_API_KEY="ib9ERgLgT2LVGKs2fwmB122cRmKB1afG"`
