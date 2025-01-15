@@ -100,7 +100,7 @@ router.get('/', async (req, res) => {
                                 });
                 
                                 try {
-                                    const response = await fetch(test + '/features/phishing-service', {
+                                    const response = await fetch('http://localhost:4000/features/phishing-service', {
                                         method: "POST",
                                         headers: {
                                             "Content-Type": "application/json",
