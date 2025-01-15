@@ -79,7 +79,7 @@ npx prisma generate
 
 ### logs
 
-To view the logs, you can execute this request (requirement: logged in as an admin): http://localhost:4000/logs
+To view the logs, you can execute this request (requirement: logged in as an admin, username: admin, password: admin): http://localhost:4000/logs
 
 ### Access
 
