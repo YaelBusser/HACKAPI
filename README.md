@@ -83,7 +83,8 @@ To view the logs, you can execute this request (requirement: logged in as an adm
 
 ### Access
 
-You can easily access the hosted application at the following URL:
+You can easily access the hosted application at the following URL: http://yael.busser.angers.mds-project.fr:4000/
+API SWAGGER : http://yael.busser.angers.mds-project.fr:4000/api-docs
 
 OR
 
