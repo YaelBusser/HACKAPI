@@ -3,10 +3,11 @@ import axios from "axios";
 import fs from "fs";
 import path from "path";
 import {fileURLToPath} from "url";
-import url from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);  // __dirname obtenu en utilisant import.meta.url
+
+const url = process.env.URL;
 
 const router = express.Router();
 
@@ -99,7 +100,7 @@ router.get('/', async (req, res) => {
                                 });
                 
                                 try {
-                                    const response = await fetch(process.env.URL + '/features/phishing-service', {
+                                    const response = await fetch(url + '/features/phishing-service', {
                                         method: "POST",
                                         headers: {
                                             "Content-Type": "application/json",
