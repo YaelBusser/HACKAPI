@@ -99,7 +99,7 @@ router.get('/', async (req, res) => {
                                 });
                 
                                 try {
-                                    const response = await fetch("http://localhost:4000/features/phishing-service", {
+                                    const response = await fetch(process.env.URL + '/features/phishing-service', {
                                         method: "POST",
                                         headers: {
                                             "Content-Type": "application/json",
@@ -131,7 +131,7 @@ router.get('/', async (req, res) => {
 
         res.send({
             message: `Fichier HTML généré avec succès ! Vous pouvez l'ouvrir à cet emplacement : ${TEMP_HTML_FILE}`,
-            info: `Vous pourrez retrouver toutes les informations à cette requête : http://localhost:4000/features/phishing-service/datas`
+            info: `Vous pourrez retrouver toutes les informations à cette requête : ${process.env.URL}/features/phishing-service/datas`
         });
 
     } catch (error) {
