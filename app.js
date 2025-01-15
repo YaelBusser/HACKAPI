@@ -64,4 +64,4 @@ app.get("/swagger.json", (req, res) => {
 });
 
 // Démarrage du serveur
-server.listen(port, "127.0.0.1", () => console.log(`Server running on http://localhost:${port}`));
+server.listen(port, () => console.log(`Server running on http://localhost:${port}`));
