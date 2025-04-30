@@ -56,16 +56,16 @@ npm install
 2. Host the `hackapi` database (found in the `data-save` folder) on your local server (I personally use XAMPP).
 
 3. Create and define the following variables in the `.env` file:
-    - `DATABASE_URL=mysql://root:@localhost:3306/hackapi?schema=public`
-    - `PORT=4000`
-    - `URL="locahost:4000ORyael.busser.angers.mds-project.fr:4000`
-    - `JWT_SECRET=hackapiJWT`
-    - `API_KEY_HUNTER_IO="f8a019855c4d19fb06628c03578695f3bb0a56e0"`
-    - `SECURITY_TRAILS_API_KEY="ib9ERgLgT2LVGKs2fwmB122cRmKB1afG"`
-    - `EMAIL_APP_DEVMDS="developpermds@gmail.com"`
-    - `PASSWORD_APP_DEVMDS="ncfe ldrg aofx zcod"`
-    - `SECURITY_TRAILS_API_KEY="ib9ERgLgT2LVGKs2fwmB122cRmKB1afG"`
-    - `SERPAPI_KEY="c4ba3f689564fedc23e2d9e367d5afcd525416e11d17a26daeb00f62b77da819"`
+    - `DATABASE_URL=`
+    - `PORT=`
+    - `URL="`
+    - `JWT_SECRET=`
+    - `API_KEY_HUNTER_IO=""`
+    - `SECURITY_TRAILS_API_KEY=""`
+    - `EMAIL_APP_DEVMDS=""`
+    - `PASSWORD_APP_DEVMDS=""`
+    - `SECURITY_TRAILS_API_KEY=""`
+    - `SERPAPI_KEY=""`
 4. Generate scheme PRISMA
 
 ```bash
